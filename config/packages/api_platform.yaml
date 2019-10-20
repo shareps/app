@@ -1,0 +1,25 @@
+api_platform:
+    allow_plain_identifiers: true
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    title: Hello API Platform
+    version: 1.0.0
+    # Mercure integration, remove if unwanted
+    mercure:
+        hub_url: '%env(MERCURE_SUBSCRIBE_URL)%'
+    path_segment_name_generator: 'App\Swagger\Operation\SlashPathSegmentNameGenerator'
+    formats:
+        json:     ['application/json']
+        jsonld:   ['application/ld+json']
+        jsonhal:  ['application/hal+json']
+        jsonapi:  ['application/vnd.api+json']
+        xml:      ['application/xml', 'text/xml']
+        yaml:     ['application/x-yaml']
+        csv:      ['text/csv']
+        html:     ['text/html']
+    swagger:
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
+

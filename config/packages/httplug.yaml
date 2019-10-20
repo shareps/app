@@ -1,0 +1,16 @@
+httplug:
+    plugins:
+        redirect:
+            preserve_header: true
+
+    discovery:
+        client: 'auto'
+
+    clients:
+        app:
+            http_methods_client: true
+            plugins:
+                - 'httplug.plugin.content_length'
+                - 'httplug.plugin.redirect'
+    profiling:
+        captured_body_length: 10000 # Capture the first 10000 chars of the HTTP body

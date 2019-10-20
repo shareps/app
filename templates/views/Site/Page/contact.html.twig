@@ -1,0 +1,5 @@
+{% extends("base.html.twig") %}
+{% block body %}
+    <div>Contact: {{ user.member.name|default('Anonymus') }}</div>
+    <div><a href="{{ path('homepage') }}">Homepage</a></div>
+{% endblock body %}

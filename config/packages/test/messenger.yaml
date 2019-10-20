@@ -1,0 +1,11 @@
+framework:
+    messenger:
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            async_priority_high: 'in-memory:///'
+                    
+            async_priority_low: 'in-memory:///'
+
+            failed: 'in-memory:///'
+
+            sync: 'sync://'

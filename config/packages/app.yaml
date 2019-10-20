@@ -1,0 +1,117 @@
+app:
+    permissions:
+        PARKING_AVAILABILITY_CREATE:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+        PARKING_AVAILABILITY_READ:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+        PARKING_AVAILABILITY_UPDATE:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+        PARKING_AVAILABILITY_DELETE:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+
+        PARKING_AVAILABILITY_BREAK_CREATE:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+        PARKING_AVAILABILITY_BREAK_READ:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+        PARKING_AVAILABILITY_BREAK_UPDATE:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+        PARKING_AVAILABILITY_BREAK_DELETE:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+
+        PARKING_MEMBER_CREATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+        PARKING_MEMBER_READ:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+            ROLE_MEMBER: true
+        PARKING_MEMBER_UPDATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+        PARKING_MEMBER_DELETE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+
+        PARKING_MEMBER_NEED_CREATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MEMBER:
+                self_only: true
+        PARKING_MEMBER_NEED_READ:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+            ROLE_MEMBER: true
+        PARKING_MEMBER_NEED_UPDATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MEMBER:
+                self_only: true
+        PARKING_MEMBER_NEED_DELETE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MEMBER:
+                self_only: true
+
+        PARKING_MEMBERSHIP_CREATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+        PARKING_MEMBERSHIP_READ:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+            ROLE_MEMBER: true
+        PARKING_MEMBERSHIP_UPDATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+        PARKING_MEMBERSHIP_DELETE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_MEMBER", "ROLE_MANAGER"]
+
+        PARKING_RESERVATION_CREATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+        PARKING_RESERVATION_READ:
+            ROLE_SYSTEM: true
+            ROLE_MANAGER: true
+            ROLE_MEMBER: true
+        PARKING_RESERVATION_UPDATE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MEMBER:
+                self_only: true
+        PARKING_RESERVATION_DELETE:
+            ROLE_SYSTEM:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+            ROLE_MANAGER:
+                roles: ["ROLE_DUMMY", "ROLE_MEMBER", "ROLE_MANAGER"]
+           
+

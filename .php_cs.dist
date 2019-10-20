@@ -1,0 +1,45 @@
+<?php
+if (!file_exists(__DIR__ . '/src')) {
+    exit(0);
+}
+
+$header = <<<'EOF'
+This file is part of the zibios/sharep.
+
+(c) Zbigniew Ślązak
+EOF;
+
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude(__DIR__ . '/var')
+    ->exclude(__DIR__ . '/vendor')
+    ->in(__DIR__ . '/src')
+    ->in(__DIR__ . '/tests')
+    ->in(__DIR__ . '/config')
+    ->in(__DIR__ . '/public')
+;
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        '@PSR1' => true,
+        '@PSR2' => true,
+        'psr4' => true,
+        'psr0' => true,
+        'strict_param' => true,
+        'date_time_immutable' => true,
+        'declare_strict_types' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'braces' => ['allow_single_line_closure' => true],
+        'header_comment' => ['header' => $header],
+        'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_order' => true,
+        'ordered_imports' => true,
+        'concat_space' => ['spacing' => 'one'],
+        'explicit_indirect_variable' => true,
+        'explicit_string_variable' => true,
+    ])
+    ->setFinder($finder)
+    ;
+
