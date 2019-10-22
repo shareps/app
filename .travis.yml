@@ -27,7 +27,7 @@ script:
     - ./bin/console lint:yaml config --parse-tags
     - ./bin/console lint:twig templates --env=prod
     - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
-    - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+    - ./vendor/bin/php-cs-fixer fix --diff --dry-run --allow-risky=yes -v
 #    - ./bin/phpunit --coverage-clover ./var/build/phpunit-coverage-clover.xml
 
 notifications:
