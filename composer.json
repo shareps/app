@@ -29,7 +29,9 @@
         "symfony/mercure-bundle": "*",
         "symfony/messenger": "4.3.*",
         "symfony/monolog-bundle": "^3.4",
-        "symfony/yaml": "4.3.*",
+        "symfony/yaml": "4.3.*"
+    },
+    "require-dev": {
         "api-platform/schema-generator": "^2.1",
         "fzaninotto/faker": "^1.8",
         "infection/infection": "^0.13.6",
