@@ -37,6 +37,8 @@ deploy:
   provider: heroku
   api_key:
     secure: ezRW60w2Xd+tHocsikjzxHjXrBckcvm4qlf6Dqx5pJLUllN7BU13AHwzbmWU44zIzmNdJo/VgvQ4MvLsqN7/OFVPNpw+CJuvyEfPHU23advOwVfnsb6AGSCMFRBtsbowyNN9PtfFU6Cp4naJCDIkNiM4VpePDaCxUKQZm8bNbZoqZRzzZysYyJvcoXv6Vo9h1jGJCXSfrDQuxJpQinoSgLs/UYENsnRUrkDmbBjVjAFuEoWAfNVM0B1xcdL/pxbjyvZmc5YpPWuILuP3zWF+17SasGijKIL2uxeuN706OKdTtlZsrRcceV9ob7Er76AQWi5EmIFP2XjM+k4UBRhM7YZiG/JeksR/ndaXqHKld9+DZaS03zuWcFs69jjJIb6rCzlL+tuSZnUU1ly7NbdeZH1DALH2cpCU43PdnsOg5v5KwczYbTfIg2Uw+UHdO1+KGKxBp4vC6oHRCJN1xJ48CkHI8QAqjkL9x+HzHfESmnlFfM00NK2q36nXAz41mIPITmU4yiJFDTSAGDZbdfAdN0Berzxe6+nCNbJuMz3mSbvd5HDGnVhD1ltbrJpzeNg9Jo9+ieDFkvet8qN79+1kdP5lO4aKZFChApGWuUSBmN88KgzqKQUPir9ZZTwQ0DoceU3TAw+lCsVjvp2kZHvFDbxqXUwm4nGnGMI4+WZ6plI=
-  app: shareps-app
+  app:
+    master: shareps-app-production
+    stage: shareps-app-stage
   on:
     repo: shareps/app
