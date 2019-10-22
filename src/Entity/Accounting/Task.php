@@ -39,7 +39,7 @@ class Task implements EntityInterface
     //-------------------------------------------------------------------------------------------
     /**
      * @var ArrayCollection|Journal[]
-     * @ORM\OneToMany(targetEntity="App\Entity\Parking\MemberNeed", mappedBy="task")
+     * @ORM\OneToMany(targetEntity="App\Entity\Accounting\Journal", mappedBy="task")
      */
     private $journals;
 

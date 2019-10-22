@@ -68,7 +68,7 @@ class RequestLog implements EntityInterface
     //-------------------------------------------------------------------------------------------
     /**
      * @var ArrayCollection|RequestLogDetail[]
-     * @ORM\OneToMany(targetEntity="App\Entity\Accounting\JournalMove", mappedBy="requestLog")
+     * @ORM\OneToMany(targetEntity="App\Entity\System\RequestLogDetail", mappedBy="requestLog")
      */
     private $requestLogDetails;
 

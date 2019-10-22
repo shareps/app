@@ -15,7 +15,6 @@ env:
         - DATABASE_URL=pgsql://postgres@localhost:5432/api
 
 php:
-    - '7.2'
     - '7.3'
 
 before_script:
@@ -25,13 +24,11 @@ before_script:
 
 script:
     - ./bin/phpunit
-    - ./bin/phpunit --coverage-clover ./var/build/phpunit-coverage-clover.xml
     - ./bin/console lint:yaml config --parse-tags
     - ./bin/console lint:twig templates --env=prod
-    - ./bin/console lint:xliff translations
-    - ./bin/console security:check
     - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
     - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+#    - ./bin/phpunit --coverage-clover ./var/build/phpunit-coverage-clover.xml
 
 notifications:
     email: false

@@ -153,7 +153,7 @@ class SlackIdentity implements EntityInterface
 
     /**
      * @var User
-     * @ORM\OneToOne(targetEntity="App\Entity\Access\User", inversedBy="googleIdentity", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Access\User", inversedBy="slackIdentity", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, unique=true)
      * @Assert\NotBlank()
      */
