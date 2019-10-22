@@ -6,9 +6,8 @@ monolog:
             handler: nested
             excluded_http_codes: [404, 405]
         nested:
-            type: rotating_file
-            max_files: 10
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            type: stream
+            path: php://stderr
             level: debug
         console:
             type: console
