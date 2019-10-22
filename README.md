@@ -1,9 +1,11 @@
 # SHAREP -SHAred REsources Platform API
 
+Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.svg?branch=master)](https://travis-ci.org/shareps/app)
+
 # Status
 - General status: Early alpha version
 - Technical side analyzed and developed, general idea known, functional side under development
-- Ready to transform to 
+- Ready to transform to working app
 
 # Tasks
 - [ ] Docker
