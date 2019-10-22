@@ -28,12 +28,25 @@ class MemberRepository extends ServiceEntityRepository
 
     public function getSystemMember(): ?Member
     {
-        return $this->createQueryBuilder('m')
-            ->select('m')
-            ->where('m.role = :role')
-            ->andWhere('m.name = :name')
+        return $this->createQueryBuilder('member')
+            ->select('member')
+            ->where('member.role = :role')
+            ->andWhere('member.name = :name')
             ->setParameter('role', RoleEnum::SYSTEM)
             ->setParameter('name', ApplicationEnum::SYSTEM_MEMBER_NAME()->getValue())
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
+    public function findOneBySlackUserId(string $slackUserId): ?Member
+    {
+        return $this->createQueryBuilder('member')
+            ->select('member')
+            ->join('member.user', 'user')
+            ->join('user.slackIdentity', 'slack')
+            ->where('slack.slackId = :slackUserId')
+            ->setParameter('slackUserId', $slackUserId)
             ->getQuery()
             ->getOneOrNullResult()
             ;

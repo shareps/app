@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace App\Slack\InteractiveComponent;
 
-use App\Slack\Message\Layout;
+use App\Slack\MessageBuilder\Layout;
 use JMS\Serializer\SerializerInterface;
 
 class ComponentHelper

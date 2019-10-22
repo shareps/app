@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace App\Slack\SlashCommand\Sharep;
 
-use App\Slack\Message\Block\SectionBlock;
-use App\Slack\Message\Layout;
-use App\Slack\Message\MessageFactory;
+use App\Slack\MessageBuilder\Block\SectionBlock;
+use App\Slack\MessageBuilder\Layout;
+use App\Slack\MessageBuilder\MessageFactory;
 use App\Slack\SlashCommand\CommandData;
 use App\Slack\SlashCommand\TaskProcessorInterface;
 use Symfony\Component\Messenger\MessageBusInterface;

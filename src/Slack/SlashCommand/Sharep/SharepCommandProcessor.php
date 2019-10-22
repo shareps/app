@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace App\Slack\SlashCommand\Sharep;
 
-use App\Slack\Message\Layout;
-use App\Slack\Message\MessageFactory;
+use App\Slack\MessageBuilder\Layout;
+use App\Slack\MessageBuilder\MessageFactory;
 use App\Slack\SlashCommand\CommandData;
 use App\Slack\SlashCommand\CommandProcessorInterface;
 use App\Slack\SlashCommand\TaskProcessorInterface;

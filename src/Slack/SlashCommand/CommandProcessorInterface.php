@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace App\Slack\SlashCommand;
 
-use App\Slack\Message\Layout;
+use App\Slack\MessageBuilder\Layout;
 
 interface CommandProcessorInterface
 {

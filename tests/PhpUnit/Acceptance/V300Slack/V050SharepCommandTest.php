@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace AppTests\PhpUnit\Acceptance\V300Slack;
 
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class V050SharepCommandTest extends AcceptanceTestCase
 {
@@ -21,6 +22,6 @@ class V050SharepCommandTest extends AcceptanceTestCase
         $client->request('GET', '/webhook/slack/command');
         $response = $client->getResponse();
 
-        $this->assertSame(500, $response->getStatusCode());
+        $this->assertSame(Response::HTTP_METHOD_NOT_ALLOWED, $response->getStatusCode());
     }
 }

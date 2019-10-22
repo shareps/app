@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SlackController extends AbstractController
 {
     /**
-     * @Route("/command", name="_command")
+     * @Route("/command", name="_command", methods={"post"})
      */
     public function commandAction(
         Request $request,
