@@ -79,7 +79,7 @@
             "@migrations-migrate"
         ],
         "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --allow-risky=yes",
-        "migrations-migrate": "./bin/console doctrine:migrations:migrate --no-configuration",
+        "migrations-migrate": "./bin/console doctrine:migrations:migrate --no-interaction",
         "migrations-add-all": "./bin/console doctrine:migrations:version --add --all",
         "schema-create": "./bin/console doctrine:schema:create",
         "phpunit": "./bin/phpunit"
