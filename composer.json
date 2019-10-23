@@ -75,7 +75,6 @@
             "@auto-scripts"
         ],
         "compile": [
-            "@schema-create",
             "@migrations-migrate"
         ],
         "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --allow-risky=yes",
