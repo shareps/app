@@ -4,9 +4,6 @@ api_platform:
         paths: ['%kernel.project_dir%/src/Entity']
     title: Hello API Platform
     version: 1.0.0
-    # Mercure integration, remove if unwanted
-    mercure:
-        hub_url: '%env(MERCURE_SUBSCRIBE_URL)%'
     path_segment_name_generator: 'App\Swagger\Operation\SlashPathSegmentNameGenerator'
     formats:
         json:     ['application/json']

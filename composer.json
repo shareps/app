@@ -27,7 +27,6 @@
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "4.3.*",
         "symfony/intl": "4.3.*",
-        "symfony/mercure-bundle": "*",
         "symfony/messenger": "4.3.*",
         "symfony/monolog-bundle": "^3.4",
         "symfony/yaml": "4.3.*"
@@ -67,7 +66,6 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "doctrine:migrations:migrate": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
@@ -76,7 +74,14 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "compile": [
+            "@schema-create",
+            "@migrations-migrate"
+        ],
         "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --allow-risky=yes",
+        "migrations-migrate": "./bin/console doctrine:migrations:migrate --no-configuration",
+        "migrations-add-all": "./bin/console doctrine:migrations:version --add --all",
+        "schema-create": "./bin/console doctrine:schema:create",
         "phpunit": "./bin/phpunit"
     },
     "conflict": {

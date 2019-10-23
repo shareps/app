@@ -21,6 +21,7 @@ before_script:
   - psql -c 'create database api;' -U postgres
   - composer self-update
   - composer install
+  - composer compile
 
 script:
   - ./bin/phpunit
