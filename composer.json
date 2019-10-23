@@ -9,6 +9,7 @@
         "adam-paterson/oauth2-slack": "^1.1",
         "api-platform/api-pack": "^1.1",
         "csa/guzzle-bundle": "^3.0",
+        "doctrine/doctrine-migrations-bundle": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "guzzlehttp/psr7": "^1.6",
         "jms/serializer-bundle": "^3.4",
@@ -66,6 +67,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
+            "doctrine:migrations:migrate --force": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
