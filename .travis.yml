@@ -23,7 +23,7 @@ before_script:
   - composer install
 
 script:
-#  - ./bin/phpunit
+  - ./bin/phpunit
   - ./bin/console lint:yaml config --parse-tags
   - ./bin/console lint:twig templates --env=prod
   - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
