@@ -13,8 +13,8 @@ services:
     container_name: sharep_db
     environment:
       - POSTGRES_DB=api
-      - POSTGRES_PASSWORD=!ChangeMe!
-      - POSTGRES_USER=api-platform
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
     volumes:
       - db-data:/var/lib/postgresql/data:rw
       # you may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
