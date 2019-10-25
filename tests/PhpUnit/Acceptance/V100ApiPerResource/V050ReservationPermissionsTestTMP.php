@@ -13,6 +13,7 @@ namespace AppTests\PhpUnit\Acceptance\V100ApiPerResource;
 use App\Enum\Functional\PermissionEnum;
 use App\Enum\Functional\RoleEnum;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class V050ReservationPermissionsTestTMP extends AcceptanceTestCase
 {
@@ -74,7 +75,11 @@ class V050ReservationPermissionsTestTMP extends AcceptanceTestCase
             );
             $fakeData = $this->apiReservationsFakePostData($subjectRole);
             $response = $this->apiReservationsPost(self::$client, $fakeData);
-            $this->assertEquals($isPermitted ? 201 : 403, $response->getStatusCode(), $requesterRole . ' - ' . $subjectRole);
+            $this->assertEquals(
+                $isPermitted ? 201 : 403,
+                $response->getStatusCode(),
+                $requesterRole.' - '.$subjectRole
+            );
             if ($isPermitted) {
                 $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
                 $itemData = $this->jsonDecode($response->getContent());
@@ -91,12 +96,23 @@ class V050ReservationPermissionsTestTMP extends AcceptanceTestCase
         );
 
         $response = $this->apiReservationsGetCollection(self::$client);
-        $this->assertEquals($isPermitted ? 200 : 403, $response->getStatusCode(), $requesterRole);
+        $this->assertEquals(
+            $isPermitted ? Response::HTTP_OK : Response::HTTP_FORBIDDEN,
+            $response->getStatusCode(),
+            $requesterRole
+        );
 
-        $firstId = $this->jsonDecode($response->getContent())[0]['id'] ?? sprintf('response%s', $response->getStatusCode());
+        $firstId = $this->jsonDecode($response->getContent())[0]['id'] ?? sprintf(
+                'response%s',
+                $response->getStatusCode()
+            );
 
         $response = $this->apiReservationsGet(self::$client, $firstId);
-        $this->assertEquals($isPermitted ? 200 : 404, $response->getStatusCode(), $requesterRole . '-' . $firstId);
+        $this->assertEquals(
+            $isPermitted ? Response::HTTP_OK : Response::HTTP_NOT_FOUND,
+            $response->getStatusCode(),
+            $requesterRole.'-'.$firstId
+        );
         if ($isPermitted) {
             $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
             $itemData = $this->jsonDecode($response->getContent());
@@ -118,7 +134,11 @@ class V050ReservationPermissionsTestTMP extends AcceptanceTestCase
         unset($requestData['id']);
         unset($requestData['points']);
         $response = $this->apiReservationsPut(self::$client, $itemId, $requestData);
-        $this->assertEquals($isPermitted ? 200 : 403, $response->getStatusCode(), $requesterRole);
+        $this->assertEquals(
+            $isPermitted ? Response::HTTP_OK : Response::HTTP_FORBIDDEN,
+            $response->getStatusCode(),
+            $requesterRole
+        );
         if ($isPermitted) {
             $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
             $itemData = $this->jsonDecode($response->getContent());

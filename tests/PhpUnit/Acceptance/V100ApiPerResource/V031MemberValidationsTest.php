@@ -12,6 +12,7 @@ namespace AppTests\PhpUnit\Acceptance\V100ApiPerResource;
 
 use App\Enum\Functional\RoleEnum;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class V031MemberValidationsTest extends AcceptanceTestCase
 {
@@ -24,7 +25,7 @@ class V031MemberValidationsTest extends AcceptanceTestCase
 
         $response = $this->apiMembersGetCollection(self::$client);
 
-        $this->assertEquals(200, $response->getStatusCode(), $response->getContent());
+        $this->assertEquals(Response::HTTP_OK, $response->getStatusCode(), $response->getContent());
     }
 
     public function test_addApiMemberWithEmptyEmail(): void
@@ -65,7 +66,7 @@ class V031MemberValidationsTest extends AcceptanceTestCase
     public function test_updateApiMember(): void
     {
         $response = $this->apiMembersPut(self::$client, self::$resourceId, self::$resourceData);
-        $this->assertEquals(200, $response->getStatusCode(), $response->getContent());
+        $this->assertEquals(Response::HTTP_OK, $response->getStatusCode(), $response->getContent());
     }
 
     public function test_updateApiMemberWithEmptyName(): void

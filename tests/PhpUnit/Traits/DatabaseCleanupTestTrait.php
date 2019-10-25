@@ -22,8 +22,8 @@ trait DatabaseCleanupTestTrait
 {
     protected static function recreateDatabase(): void
     {
-        exec('php bin/console doctrine:schema:drop --env=test --force');
-        exec('php bin/console doctrine:schema:create --env=test');
+        exec('php bin/console doctrine:schema:drop --env=test --force --full-database');
+        exec('php bin/console doctrine:migrations:migrate --env=test --no-interaction');
     }
 
     protected static function truncateTable(EntityManagerInterface $entityManager, string $entityName): void

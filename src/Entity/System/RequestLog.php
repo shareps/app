@@ -49,9 +49,9 @@ class RequestLog implements EntityInterface
 
     /**
      * @var string
-     * @ORM\Column(name="group", type="string", length=255, nullable=false)
+     * @ORM\Column(name="base_path", type="string", length=255, nullable=false)
      */
-    private $group;
+    private $basePath;
 
     /**
      * @var int
@@ -73,7 +73,7 @@ class RequestLog implements EntityInterface
     private $requestLogDetails;
 
     /**
-     * @var Member
+     * @var Member|null
      * @ORM\ManyToOne(targetEntity="App\Entity\Parking\Member")
      * @ORM\JoinColumn(name="member_id", referencedColumnName="id", nullable=true)
      */
@@ -82,20 +82,104 @@ class RequestLog implements EntityInterface
     //-------------------------------------------------------------------------------------------
 
     public function __construct(
-        Member $member,
-        \DateTimeImmutable $startedAt,
         RequestLogTypeEnum $type,
-        string $group
+        string $basePath,
+        \DateTimeImmutable $startedAt,
+        Member $member = null
     ) {
         $this->id = ShortUuid::uuid4();
         $this->member = $member;
         $this->startedAt = $startedAt;
         $this->type = $type->getValue();
-        $this->group = $group;
+        $this->basePath = $basePath;
         $this->miliSeconds = 0;
         $this->successful = false;
         $this->requestLogDetails = new ArrayCollection();
     }
 
     //-------------------------------------------------------------------------------------------
+
+    public function getStartedAt(): \DateTimeImmutable
+    {
+        return $this->startedAt;
+    }
+
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getFinishedAt(): ?\DateTimeImmutable
+    {
+        return $this->finishedAt;
+    }
+
+    public function setFinishedAt(\DateTimeImmutable $finishedAt): self
+    {
+        $this->finishedAt = $finishedAt;
+
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getBasePath(): string
+    {
+        return $this->basePath;
+    }
+
+    public function getMiliSeconds(): int
+    {
+        return $this->miliSeconds;
+    }
+
+    public function setMiliSeconds(int $miliSeconds): self
+    {
+        $this->miliSeconds = $miliSeconds;
+
+        return $this;
+    }
+
+    public function isSuccessful(): bool
+    {
+        return $this->successful;
+    }
+
+    public function setSuccessful(bool $successful): self
+    {
+        $this->successful = $successful;
+
+        return $this;
+    }
+
+    /**
+     * @return RequestLogDetail[]|ArrayCollection
+     */
+    public function getRequestLogDetails(): ArrayCollection
+    {
+        return $this->requestLogDetails;
+    }
+
+    /**
+     * @param RequestLogDetail[]|ArrayCollection $requestLogDetails
+     */
+    public function setRequestLogDetails(ArrayCollection $requestLogDetails): self
+    {
+        $this->requestLogDetails = $requestLogDetails;
+
+        return $this;
+    }
+
+    public function getMember(): ?Member
+    {
+        return $this->member;
+    }
+
+    public function setMember(?Member $member): self
+    {
+        $this->member = $member;
+
+        return $this;
+    }
 }

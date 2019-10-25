@@ -22,7 +22,7 @@ class HomepageControllerTest extends WebTestCase
         $client->request('GET', '/');
         $response = $client->getResponse();
 
-        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
         $this->assertInstanceOf(Response::class, $response);
         $this->assertContains('<html lang="en">', $response->getContent());
     }

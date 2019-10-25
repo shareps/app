@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -32,7 +33,7 @@ trait ApiLogInTestTrait
         $firewall = 'main';
 
         $token = new UsernamePasswordToken($user, null, $firewall, $user->getRoles());
-        $session->set('_security_' . $firewall, serialize($token));
+        $session->set('_security_'.$firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
@@ -50,7 +51,7 @@ trait ApiLogInTestTrait
             ['HTTP_ACCEPT' => 'application/json']
         );
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
 
     protected function apiLogInMember(ContainerInterface $container, KernelBrowser $client, Member $member): void

@@ -13,6 +13,7 @@ namespace AppTests\PhpUnit\Acceptance\V100ApiPerResource;
 use App\Enum\Functional\PermissionEnum;
 use App\Enum\Functional\RoleEnum;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class V030MemberPermissionsTest extends AcceptanceTestCase
 {
@@ -74,9 +75,9 @@ class V030MemberPermissionsTest extends AcceptanceTestCase
             $fakeData = $this->apiMembersFakePostData($subjectRole);
             $response = $this->apiMembersPost(self::$client, $fakeData);
             $this->assertEquals(
-                $isPermitted ? 201 : 403,
+                $isPermitted ? Response::HTTP_CREATED : Response::HTTP_FORBIDDEN,
                 $response->getStatusCode(),
-                $requesterRole . ' - ' . $subjectRole
+                $requesterRole.' - '.$subjectRole
             );
             if ($isPermitted) {
                 $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
@@ -94,15 +95,23 @@ class V030MemberPermissionsTest extends AcceptanceTestCase
         );
 
         $response = $this->apiMembersGetCollection(self::$client);
-        $this->assertEquals($isPermitted ? 200 : 403, $response->getStatusCode(), $requesterRole);
-
-        $firstId = $this->jsonDecode($response->getContent())[0]['id'] ?? sprintf(
-            'response%s',
-            $response->getStatusCode()
+        $this->assertEquals(
+            $isPermitted ? Response::HTTP_OK : Response::HTTP_FORBIDDEN,
+            $response->getStatusCode(),
+            $requesterRole
         );
 
+        $firstId = $this->jsonDecode($response->getContent())[0]['id'] ?? sprintf(
+                'response%s',
+                $response->getStatusCode()
+            );
+
         $response = $this->apiMembersGet(self::$client, $firstId);
-        $this->assertEquals($isPermitted ? 200 : 404, $response->getStatusCode(), $requesterRole . '-' . $firstId);
+        $this->assertEquals(
+            $isPermitted ? Response::HTTP_OK : Response::HTTP_NOT_FOUND,
+            $response->getStatusCode(),
+            $requesterRole.'-'.$firstId
+        );
         if ($isPermitted) {
             $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
             $itemData = $this->jsonDecode($response->getContent());
@@ -127,7 +136,11 @@ class V030MemberPermissionsTest extends AcceptanceTestCase
             $requestData['role'] = $subjectRole;
 
             $response = $this->apiMembersPut(self::$client, $itemId, $requestData);
-            $this->assertEquals($isPermitted ? 200 : 403, $response->getStatusCode(), $requesterRole);
+            $this->assertEquals(
+                $isPermitted ? Response::HTTP_OK : Response::HTTP_FORBIDDEN,
+                $response->getStatusCode(),
+                $requesterRole
+            );
             if ($isPermitted) {
                 $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
                 $itemData = $this->jsonDecode($response->getContent());

@@ -29,6 +29,7 @@
         "symfony/intl": "4.3.*",
         "symfony/messenger": "4.3.*",
         "symfony/monolog-bundle": "^3.4",
+        "symfony/stopwatch": "4.3.*",
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
@@ -81,7 +82,7 @@
         "migrations-migrate": "./bin/console doctrine:migrations:migrate --no-interaction",
         "migrations-add-all": "./bin/console doctrine:migrations:version --add --all",
         "schema-create": "./bin/console doctrine:schema:create",
-        "phpunit": "./bin/phpunit"
+        "phpunit": "./bin/phpunit --stop-on-failure"
     },
     "conflict": {
         "symfony/symfony": "*"
