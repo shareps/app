@@ -33,7 +33,7 @@ trait ApiLogInTestTrait
         $firewall = 'main';
 
         $token = new UsernamePasswordToken($user, null, $firewall, $user->getRoles());
-        $session->set('_security_'.$firewall, serialize($token));
+        $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());

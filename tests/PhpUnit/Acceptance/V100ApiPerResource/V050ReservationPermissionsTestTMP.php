@@ -78,7 +78,7 @@ class V050ReservationPermissionsTestTMP extends AcceptanceTestCase
             $this->assertEquals(
                 $isPermitted ? 201 : 403,
                 $response->getStatusCode(),
-                $requesterRole.' - '.$subjectRole
+                $requesterRole . ' - ' . $subjectRole
             );
             if ($isPermitted) {
                 $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));
@@ -103,15 +103,15 @@ class V050ReservationPermissionsTestTMP extends AcceptanceTestCase
         );
 
         $firstId = $this->jsonDecode($response->getContent())[0]['id'] ?? sprintf(
-                'response%s',
-                $response->getStatusCode()
-            );
+            'response%s',
+            $response->getStatusCode()
+        );
 
         $response = $this->apiReservationsGet(self::$client, $firstId);
         $this->assertEquals(
             $isPermitted ? Response::HTTP_OK : Response::HTTP_NOT_FOUND,
             $response->getStatusCode(),
-            $requesterRole.'-'.$firstId
+            $requesterRole . '-' . $firstId
         );
         if ($isPermitted) {
             $this->assertArrayHasKey('id', $this->jsonDecode($response->getContent()));

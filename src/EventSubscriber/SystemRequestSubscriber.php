@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Entity\Access\User;
-use App\Entity\Parking\Member;
 use App\Entity\System\RequestLog;
 use App\Entity\System\RequestLogDetail;
 use App\Enum\Entity\RequestLogTypeEnum;
