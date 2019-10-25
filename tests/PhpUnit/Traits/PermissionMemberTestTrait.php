@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace AppTests\PhpUnit\Traits;
 
+use App\Entity\Access\SlackIdentity;
 use App\Entity\Access\User;
 use App\Entity\Parking\Member;
 use App\Enum\Functional\RoleEnum;
@@ -36,8 +37,26 @@ trait PermissionMemberTestTrait
                 new RoleEnum($permissionMember['role']),
                 $user
             );
+            $slackIdentity = new SlackIdentity(
+                $member->getUser(),
+                $permissionMember['slackId'],
+                $permissionMember['email']
+            );
+            $slackIdentity->setTeamId('test')
+                ->setName($permissionMember['role'])
+                ->setIsDeleted(false)
+                ->setColor('')
+                ->setRealName('')
+                ->setTz('')
+                ->setTzLabel('')
+                ->setTzOffset(0)
+                ->setIsAdmin(false)
+                ->setIsBot(false)
+                ->setUpdated(0)
+                ->setIsAppUser(false)
+            ;
 
-            $memberRepository->saveAllInTransaction($user, $member);
+            $memberRepository->saveAllInTransaction($user, $member, $slackIdentity);
         }
     }
 

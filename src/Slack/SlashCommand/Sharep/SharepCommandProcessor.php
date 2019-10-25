@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace App\Slack\SlashCommand\Sharep;
 
 use App\Slack\MessageBuilder\Layout;
-use App\Slack\MessageBuilder\MessageFactory;
 use App\Slack\SlashCommand\CommandData;
 use App\Slack\SlashCommand\CommandProcessorInterface;
 use App\Slack\SlashCommand\TaskProcessorInterface;
@@ -19,15 +18,15 @@ use App\Slack\SlashCommand\TaskProcessorInterface;
 class SharepCommandProcessor implements CommandProcessorInterface
 {
     public const COMMAND = '/sharep';
-    /** @var ReleaseTaskProcessor */
+    /** @var SharepReleaseTaskProcessor */
     private $releaseTaskProcessor;
-    /** @var MessageFactory */
-    private $messageFactory;
+    /** @var SharepHelpMessage */
+    private $sharepHelpMessage;
 
-    public function __construct(ReleaseTaskProcessor $releaseTaskProcessor, MessageFactory $messageFactory)
+    public function __construct(SharepReleaseTaskProcessor $releaseTaskProcessor, SharepHelpMessage $sharepHelpMessage)
     {
         $this->releaseTaskProcessor = $releaseTaskProcessor;
-        $this->messageFactory = $messageFactory;
+        $this->sharepHelpMessage = $sharepHelpMessage;
     }
 
     public function process(CommandData $commandData): Layout
@@ -39,21 +38,7 @@ class SharepCommandProcessor implements CommandProcessorInterface
             }
         }
 
-        return $this->createLayoutNotRecognized();
-    }
-
-    private function createLayoutNotRecognized(): Layout
-    {
-        $mf = $this->messageFactory;
-        $blocks[] = $mf->blockSection($mf->elementPlainText('Command content not recognized'));
-        /** @var TaskProcessorInterface $taskProcessor */
-        foreach ($this->getTaskProcessors() as $taskProcessor) {
-            $taskProcessor->getBlockHelp();
-        }
-
-        return $mf->layout(
-            $mf->blockSection($mf->elementPlainText('Command content not recognized')),
-        );
+        return $this->sharepHelpMessage->generate();
     }
 
     private function getTaskProcessors(): array

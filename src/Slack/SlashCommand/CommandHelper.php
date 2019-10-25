@@ -13,8 +13,8 @@ namespace App\Slack\SlashCommand;
 use App\Entity\Parking\Member;
 use App\Repository\Entity\Parking\MemberRepository;
 use App\Slack\MessageBuilder\Layout;
-use App\Slack\SlashCommand\Sharep\NotRecognizedTaskProcessor;
-use App\Slack\SlashCommand\Sharep\NotRecognizedUserProcessor;
+use App\Slack\SlashCommand\Sharep\ErrorMessage;
+use App\Slack\SlashCommand\Sharep\NotRecognizedUserMessage;
 use App\Slack\SlashCommand\Sharep\SharepCommandProcessor;
 use JMS\Serializer\SerializerInterface;
 
@@ -22,10 +22,10 @@ class CommandHelper
 {
     /** @var SharepCommandProcessor */
     private $sharepCommandProcessor;
-    /** @var NotRecognizedTaskProcessor */
-    private $notRecognizedTaskProcessor;
-    /** @var NotRecognizedUserProcessor */
-    private $notRecognizedUserProcessor;
+    /** @var ErrorMessage */
+    private $errorMessage;
+    /** @var NotRecognizedUserMessage */
+    private $notRecognizedUserMessage;
     /** @var SerializerInterface */
     private $serializer;
     /** @var MemberRepository */
@@ -33,14 +33,14 @@ class CommandHelper
 
     public function __construct(
         SharepCommandProcessor $sharepCommandProcessor,
-        NotRecognizedTaskProcessor $notRecognizedTaskProcessor,
-        NotRecognizedUserProcessor $notRecognizedUserProcessor,
+        ErrorMessage $errorMessage,
+        NotRecognizedUserMessage $notRecognizedUserMessage,
         SerializerInterface $serializer,
         MemberRepository $memberRepository
     ) {
         $this->sharepCommandProcessor = $sharepCommandProcessor;
-        $this->notRecognizedTaskProcessor = $notRecognizedTaskProcessor;
-        $this->notRecognizedUserProcessor = $notRecognizedUserProcessor;
+        $this->errorMessage = $errorMessage;
+        $this->notRecognizedUserMessage = $notRecognizedUserMessage;
         $this->serializer = $serializer;
         $this->memberRepository = $memberRepository;
     }
@@ -51,14 +51,14 @@ class CommandHelper
 
         $member = $this->memberRepository->findOneBySlackUserId($commandData->userId);
         if (!$member instanceof Member) {
-            return $this->notRecognizedUserProcessor->process($commandData);
+            return $this->notRecognizedUserMessage->generate();
         }
 
         if (SharepCommandProcessor::COMMAND === $commandData->command) {
             return $this->sharepCommandProcessor->process($commandData);
         }
 
-        return $this->notRecognizedTaskProcessor->process($commandData);
+        return $this->errorMessage->generate();
     }
 
     private function calculateCommandData(array $data): CommandData

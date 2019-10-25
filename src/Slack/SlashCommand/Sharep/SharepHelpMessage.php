@@ -12,10 +12,8 @@ namespace App\Slack\SlashCommand\Sharep;
 
 use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;
-use App\Slack\SlashCommand\CommandData;
-use App\Slack\SlashCommand\TaskProcessorInterface;
 
-class NotRecognizedTaskProcessor implements TaskProcessorInterface
+class SharepHelpMessage
 {
     /** @var MessageFactory */
     private $messageFactory;
@@ -25,19 +23,17 @@ class NotRecognizedTaskProcessor implements TaskProcessorInterface
         $this->messageFactory = $messageFactory;
     }
 
-    public function support(CommandData $commandData): bool
-    {
-        return true;
-    }
-
-    public function process(CommandData $commandData): Layout
+    public function generate(): Layout
     {
         $mf = $this->messageFactory;
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('Command content not recognized!'),
-            )
+                $mf->elementPlainText('Please try again, proper commands are:'),
+            ),
+            $mf->blockSection(
+                $mf->elementPlainText('/sharep release'),
+            ),
         );
     }
 }

@@ -99,26 +99,31 @@ abstract class AcceptanceTestCase extends WebTestCase
                     'email' => 'ROLEUSER@localhost.local',
                     'name' => 'ROLE USER',
                     'role' => 'ROLE_USER',
+                    'slackId' => 'ROLE_USER',
                 ],
                 RoleEnum::DUMMY => [
                     'email' => 'ROLEDUMMY@localhost.local',
                     'name' => 'ROLE DUMMY',
                     'role' => 'ROLE_DUMMY',
+                    'slackId' => 'ROLE_DUMMY',
                 ],
                 RoleEnum::MEMBER => [
                     'email' => 'ROLEMEMBER@localhost.local',
                     'name' => 'ROLE MEMBER',
                     'role' => 'ROLE_MEMBER',
+                    'slackId' => 'ROLE_MEMBER',
                 ],
                 RoleEnum::MANAGER => [
                     'email' => 'ROLEMANAGER@localhost.local',
                     'name' => 'ROLE MANAGER',
                     'role' => 'ROLE_MANAGER',
+                    'slackId' => 'ROLE_MANAGER',
                 ],
                 RoleEnum::SYSTEM => [
                     'email' => 'ROLESYSTEM@localhost.local',
                     'name' => 'ROLE SYSTEM',
                     'role' => 'ROLE_SYSTEM',
+                    'slackId' => 'ROLE_SYSTEM',
                 ],
             ],
             'availabilities' => [

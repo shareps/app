@@ -14,18 +14,14 @@ use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;
 use App\Slack\SlashCommand\CommandData;
 use App\Slack\SlashCommand\TaskProcessorInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
 
-class ReleaseTaskProcessor implements TaskProcessorInterface
+class SharepReleaseTaskProcessor implements TaskProcessorInterface
 {
-    /** @var MessageBusInterface */
-    private $messageBus;
     /** @var MessageFactory */
     private $messageFactory;
 
-    public function __construct(MessageBusInterface $messageBus, MessageFactory $messageFactory)
+    public function __construct(MessageFactory $messageFactory)
     {
-        $this->messageBus = $messageBus;
         $this->messageFactory = $messageFactory;
     }
 

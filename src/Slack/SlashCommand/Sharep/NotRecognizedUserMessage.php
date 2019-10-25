@@ -12,10 +12,8 @@ namespace App\Slack\SlashCommand\Sharep;
 
 use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;
-use App\Slack\SlashCommand\CommandData;
-use App\Slack\SlashCommand\TaskProcessorInterface;
 
-class NotRecognizedUserProcessor implements TaskProcessorInterface
+class NotRecognizedUserMessage
 {
     /** @var MessageFactory */
     private $messageFactory;
@@ -25,12 +23,7 @@ class NotRecognizedUserProcessor implements TaskProcessorInterface
         $this->messageFactory = $messageFactory;
     }
 
-    public function support(CommandData $commandData): bool
-    {
-        return true;
-    }
-
-    public function process(CommandData $commandData): Layout
+    public function generate(): Layout
     {
         $mf = $this->messageFactory;
 
