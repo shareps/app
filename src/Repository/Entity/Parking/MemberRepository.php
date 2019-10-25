@@ -41,11 +41,10 @@ class MemberRepository extends ServiceEntityRepository
 
     public function findOneBySlackUserId(string $slackUserId): ?Member
     {
-        return $this->createQueryBuilder('member')
-            ->select('member')
-            ->join('member.user', 'user')
-            ->join('user.slackIdentity', 'slack')
-            ->where('slack.slackId = :slackUserId')
+        return $this->createQueryBuilder('members')
+            ->join('members.user', 'users')
+            ->join('users.slackIdentity', 'slacks')
+            ->where('slacks.slackId = :slackUserId')
             ->setParameter('slackUserId', $slackUserId)
             ->getQuery()
             ->getOneOrNullResult()

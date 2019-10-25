@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace App\Slack\SlashCommand;
 
-use App\Slack\MessageBuilder\Block\SectionBlock;
 use App\Slack\MessageBuilder\Layout;
 
 interface TaskProcessorInterface
@@ -18,8 +17,4 @@ interface TaskProcessorInterface
     public function support(CommandData $commandData): bool;
 
     public function process(CommandData $commandData): Layout;
-
-    public function getTextHelp(): string;
-
-    public function getBlockHelp(): SectionBlock;
 }

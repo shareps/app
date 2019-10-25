@@ -14,24 +14,20 @@ use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;
 use App\Slack\SlashCommand\CommandData;
 use App\Slack\SlashCommand\TaskProcessorInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
 
-class ReleaseTaskProcessor implements TaskProcessorInterface
+class NotRecognizedTaskProcessor implements TaskProcessorInterface
 {
-    /** @var MessageBusInterface */
-    private $messageBus;
     /** @var MessageFactory */
     private $messageFactory;
 
-    public function __construct(MessageBusInterface $messageBus, MessageFactory $messageFactory)
+    public function __construct(MessageFactory $messageFactory)
     {
-        $this->messageBus = $messageBus;
         $this->messageFactory = $messageFactory;
     }
 
     public function support(CommandData $commandData): bool
     {
-        return (bool) preg_match("/^release\s?/i", $commandData->text);
+        return true;
     }
 
     public function process(CommandData $commandData): Layout
@@ -40,8 +36,7 @@ class ReleaseTaskProcessor implements TaskProcessorInterface
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('Please select date'),
-                $mf->elementDatePicker('datepicker')
+                $mf->elementPlainText('Command content not recognized!'),
             )
         );
     }

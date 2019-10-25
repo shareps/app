@@ -82,7 +82,8 @@
         "migrations-migrate": "./bin/console doctrine:migrations:migrate --no-interaction",
         "migrations-add-all": "./bin/console doctrine:migrations:version --add --all",
         "schema-create": "./bin/console doctrine:schema:create",
-        "phpunit": "./bin/phpunit --stop-on-failure"
+        "phpunit": "./bin/phpunit --stop-on-failure",
+        "phpunit-current": "./bin/phpunit --stop-on-failure --group=current"
     },
     "conflict": {
         "symfony/symfony": "*"

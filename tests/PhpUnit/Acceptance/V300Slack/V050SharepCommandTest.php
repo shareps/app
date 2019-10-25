@@ -13,16 +13,24 @@ namespace AppTests\PhpUnit\Acceptance\V300Slack;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group current
+ */
 class V050SharepCommandTest extends AcceptanceTestCase
 {
     public function test_webhook(): void
     {
-//        $client = static::createClient([], ['HTTPS' => true]);
-//
-//        $client->request('POST', '/webhook/slack/command', [], [], [], json_encode(['user' => '123']));
-//        $response = $client->getResponse();
-//
-//        $this->assertSame(Response::HTTP_METHOD_NOT_ALLOWED, $response->getStatusCode());
-        $this->assertTrue(true);
+        $client = static::createClient([], ['HTTPS' => true]);
+
+        $client->request(
+            'POST',
+            '/webhook/slack/command',
+            ['user_id' => '123'],
+            [],
+            ['content-type' => 'application/x-www-form-urlencoded']
+        );
+        $response = $client->getResponse();
+
+        $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
     }
 }
