@@ -13,9 +13,6 @@ namespace AppTests\PhpUnit\Acceptance\V300Slack;
 use App\Repository\Entity\Account\UserRepository;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 
-/**
- * @group current
- */
 class V999CleanupTest extends AcceptanceTestCase
 {
     public function test_cleanup(): void

@@ -15,10 +15,7 @@ use App\Enum\Functional\RoleEnum;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @group current
- */
-class V050SharepCommandTest extends AcceptanceTestCase
+class V010SharepCommandTest extends AcceptanceTestCase
 {
     public function test_webhookUnknownCommand(): void
     {

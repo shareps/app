@@ -13,9 +13,6 @@ namespace AppTests\PhpUnit\Acceptance\V300Slack;
 use App\Enum\Functional\RoleEnum;
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 
-/**
- * @group current
- */
 class V004AddInitialResoureDataTest extends AcceptanceTestCase
 {
     public function test_addMemberResources(): void

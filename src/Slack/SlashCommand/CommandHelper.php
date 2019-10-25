@@ -17,6 +17,7 @@ use App\Slack\SlashCommand\Sharep\ErrorMessage;
 use App\Slack\SlashCommand\Sharep\NotRecognizedUserMessage;
 use App\Slack\SlashCommand\Sharep\SharepCommandProcessor;
 use JMS\Serializer\SerializerInterface;
+use Psr\Log\LoggerInterface;
 
 class CommandHelper
 {
@@ -30,35 +31,49 @@ class CommandHelper
     private $serializer;
     /** @var MemberRepository */
     private $memberRepository;
+    /** @var LoggerInterface */
+    private $logger;
 
     public function __construct(
         SharepCommandProcessor $sharepCommandProcessor,
         ErrorMessage $errorMessage,
         NotRecognizedUserMessage $notRecognizedUserMessage,
         SerializerInterface $serializer,
-        MemberRepository $memberRepository
+        MemberRepository $memberRepository,
+        LoggerInterface $logger
     ) {
         $this->sharepCommandProcessor = $sharepCommandProcessor;
         $this->errorMessage = $errorMessage;
         $this->notRecognizedUserMessage = $notRecognizedUserMessage;
         $this->serializer = $serializer;
         $this->memberRepository = $memberRepository;
+        $this->logger = $logger;
     }
 
     public function handleWebhook(array $data): Layout
     {
-        $commandData = $this->calculateCommandData($data);
+        try {
+            $message = null;
+            $commandData = $this->calculateCommandData($data);
 
-        $member = $this->memberRepository->findOneBySlackUserId($commandData->userId);
-        if (!$member instanceof Member) {
-            return $this->notRecognizedUserMessage->generate();
+            $member = $this->memberRepository->findOneBySlackUserId($commandData->userId);
+            if (!$member instanceof Member) {
+                $message = $this->notRecognizedUserMessage->generate();
+            }
+
+            if (SharepCommandProcessor::COMMAND === $commandData->command) {
+                $message = $this->sharepCommandProcessor->process($commandData);
+            }
+
+            if (!$message instanceof Layout) {
+                $message = $this->errorMessage->generate();
+            }
+        } catch (\Throwable $e) {
+            $this->logger->error($e);
+            $message = $this->errorMessage->generate();
         }
 
-        if (SharepCommandProcessor::COMMAND === $commandData->command) {
-            return $this->sharepCommandProcessor->process($commandData);
-        }
-
-        return $this->errorMessage->generate();
+        return $message;
     }
 
     private function calculateCommandData(array $data): CommandData

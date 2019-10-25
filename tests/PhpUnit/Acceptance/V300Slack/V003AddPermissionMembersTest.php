@@ -12,9 +12,6 @@ namespace AppTests\PhpUnit\Acceptance\V300Slack;
 
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 
-/**
- * @group current
- */
 class V003AddPermissionMembersTest extends AcceptanceTestCase
 {
     public function test_addPermissionMembers(): void

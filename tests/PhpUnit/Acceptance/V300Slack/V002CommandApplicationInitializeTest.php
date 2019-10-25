@@ -12,9 +12,6 @@ namespace AppTests\PhpUnit\Acceptance\V300Slack;
 
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 
-/**
- * @group current
- */
 class V002CommandApplicationInitializeTest extends AcceptanceTestCase
 {
     public function test_commandApplicationInitialize(): void

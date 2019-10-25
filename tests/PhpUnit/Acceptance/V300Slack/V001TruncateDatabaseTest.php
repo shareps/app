@@ -12,9 +12,6 @@ namespace AppTests\PhpUnit\Acceptance\V300Slack;
 
 use AppTests\PhpUnit\Acceptance\AcceptanceTestCase;
 
-/**
- * @group current
- */
 class V001TruncateDatabaseTest extends AcceptanceTestCase
 {
     public function test_truncateDatabase(): void
