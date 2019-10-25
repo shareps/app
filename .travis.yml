@@ -1,6 +1,16 @@
 language: php
 sudo: false
 
+env:
+  global:
+    - SYMFONY_PHPUNIT_DIR="$HOME/.phpunit"
+    - DATABASE_URL=pgsql://postgres@localhost:5432/api
+    - CC_TEST_REPORTER_ID=0b9db21c5ccbad905dfd1f19508f07796b26d32803aeb1507663732ea09e6456
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+
+php:
+  - '7.3'
+
 services:
   - postgresql
 
@@ -9,26 +19,22 @@ cache:
     - $HOME/.composer/cache/files
     - $HOME/.phpunit
 
-env:
-  global:
-    - SYMFONY_PHPUNIT_DIR="$HOME/.phpunit"
-    - DATABASE_URL=pgsql://postgres@localhost:5432/api
-
-php:
-  - '7.3'
-
 before_script:
   - psql -c 'create database api;' -U postgres
   - composer self-update
   - composer install
   - composer compile
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
-  - ./bin/phpunit
+  - ./bin/phpunit --testsuite=UnitSuite,IntegrationSuite
   - ./bin/console lint:yaml config --parse-tags
   - ./bin/console doctrine:schema:validate --no-interaction
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run --allow-risky=yes
-#    - ./bin/phpunit --coverage-clover ./var/build/phpunit-coverage-clover.xml
+  - ./bin/phpunit --coverage-clover ./var/build/phpunit-coverage-clover.xml
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -t clover ./var/build/phpunit-coverage-clover.xml --exit-code $TRAVIS_TEST_RESULT; fi
 
 notifications:
   email: false

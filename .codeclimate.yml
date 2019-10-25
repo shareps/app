@@ -1,0 +1,13 @@
+---
+version: 2
+exclude_paths:
+  - bin/**/*
+  - config/**/*
+  - docker/**/*
+  - DoctrineMigrations/**/*
+  - heroku/**/*
+  - public/**/*
+  - templates/**/*
+  - tests/**/*
+  - var/**/*
+  - vendor/**/*
