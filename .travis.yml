@@ -33,8 +33,8 @@ script:
   - ./bin/console lint:yaml config --parse-tags
   - ./bin/console doctrine:schema:validate --no-interaction
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run --allow-risky=yes
-  - ./bin/phpunit --coverage-clover ./var/build/phpunit-coverage-clover.xml
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -t clover ./var/build/phpunit-coverage-clover.xml --exit-code $TRAVIS_TEST_RESULT; fi
+  - ./bin/phpunit --coverage-clover ./var/build/clover.xml
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -t clover -p /home/travis/build/shareps/app/var/build --exit-code $TRAVIS_TEST_RESULT; fi
 
 notifications:
   email: false
