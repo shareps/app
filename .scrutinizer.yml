@@ -76,7 +76,6 @@ coding_style:
 tools:
     external_code_coverage:
         timeout: 600
-        runs: 2
     php_sim: true
     php_mess_detector: true
     php_cs_fixer: true

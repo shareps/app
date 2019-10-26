@@ -50,12 +50,12 @@ class SystemRequestSubscriber implements EventSubscriberInterface
                 ['onKernelResponse', 0],
             ],
             KernelEvents::EXCEPTION => [
-                ['getKernelException', 0],
+                ['onKernelException', 0],
             ],
         ];
     }
 
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         if (!$event->isMasterRequest()) {
             return;
@@ -104,11 +104,16 @@ class SystemRequestSubscriber implements EventSubscriberInterface
         $this->entityManager->flush();
     }
 
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         if (null === $this->requestLog) {
             return;
         }
+
+        if (!$event->isMasterRequest()) {
+            return;
+        }
+
         $this->requestLog->setFinishedAt(new \DateTimeImmutable());
         $this->requestLog->setSuccessful(true);
 
@@ -117,11 +122,16 @@ class SystemRequestSubscriber implements EventSubscriberInterface
         $this->entityManager->flush();
     }
 
-    public function getKernelException(ExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event): void
     {
         if (null === $this->requestLog) {
             return;
         }
+
+        if (!$event->isMasterRequest()) {
+            return;
+        }
+
         $this->requestLog->setSuccessful(false);
 
         $this->entityManager->persist($this->requestLog);

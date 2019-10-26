@@ -110,10 +110,14 @@ class ReserveDaysProperties
         foreach ($this->dates as $date) {
             $dateString = $date->format(ApplicationEnum::DATE_FORMAT);
 
-            $this->placesCountByDate[$dateString] = $this->parkingReservationRepository->getPlacesCountAvailableForDate($date);
-            $this->reservationsByDate[$dateString] = $this->parkingReservationRepository->getReservationsForDate($date);
-            $this->membersByDate[$dateString] = $this->parkingReservationRepository->getMembersWithMembershipForDate($date);
-            $this->membersNeedsByDate[$dateString] = $this->parkingReservationRepository->getMembersNeedsForDate($date);
+            $this->placesCountByDate[$dateString] = $this->parkingReservationRepository
+                ->getPlacesCountAvailableForDate($date);
+            $this->reservationsByDate[$dateString] = $this->parkingReservationRepository
+                ->getReservationsForDate($date);
+            $this->membersByDate[$dateString] = $this->parkingReservationRepository
+                ->getMembersWithMembershipForDate($date);
+            $this->membersNeedsByDate[$dateString] = $this->parkingReservationRepository
+                ->getMembersNeedsForDate($date);
         }
     }
 
@@ -178,7 +182,7 @@ class ReserveDaysProperties
         $this->membershipDatesByMember = [];
         /** @var Member $member */
         foreach ($this->membersByDate as $dateString => $member) {
-            $membershipDatesByMember[$member->getId()][$dateString] = [$dateString];
+            $this->membershipDatesByMember[$member->getId()][$dateString] = [$dateString];
         }
     }
 }
