@@ -97,5 +97,25 @@ build:
     nodes:
         my-tests:
             environment:
+                mysql: false
+                redis: false
+                postgresql: true
                 php:
                     version: 7.3
+            dependencies:
+                before:
+                    - composer install
+            tests:
+                override:
+                    -
+                        command: bin/phpunit --coverage-clover=clover.xml
+                        coverage:
+                            file: clover.xml
+                            format: php-clover
+
+build_failure_conditions:
+    - 'elements.rating(<= C).new.exists'                             # No new classes/methods with a rating of C or worse allowed
+    - 'issues.severity(>= MAJOR).new.exists'                         # New issues of major or higher severity
+    - 'project.metric_change("scrutinizer.test_coverage", < -0.01))' # Code Coverage decreased from previous inspection
+    - 'patches.label("Unused Use Statements").new.exists'            # No new unused imports patches allowed
+    - 'project.metric("scrutinizer.test_coverage", < 0.80)'          # Code Coverage drops below 60%

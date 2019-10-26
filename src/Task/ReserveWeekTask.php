@@ -24,7 +24,7 @@ use App\Repository\Functional\ParkingReservationRepository;
 
 class ReserveWeekTask extends AbstractTask
 {
-    /** @var ReserveDaysProperties|null */
+    /** @var ReserveDaysProperties */
     private $properties;
     /** @var array|EntityInterface[] */
     private $entitiesToSave = [];
