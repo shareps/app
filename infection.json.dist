@@ -1,27 +1,27 @@
 {
-  "timeout": 100,
-  "source": {
-    "directories": [
-      "./src"
-    ],
-    "excludes": [
-      "Kernel.php",
-      "Repository",
-      "Entity",
-      "DataFixtures"
-    ]
-  },
-  "logs": {
-    "text": "./var/build/infection/infection-log.txt",
-    "summary": "./var/build/infection/summary.log",
-    "debug": "./var/build/infection/debug.log",
-    "perMutator": "./var/build/infection/per-mutator.md"
-  },
-  "mutators": {
-    "@default": true
-  },
-  "tmpDir": "./var/tmp",
-  "phpUnit": {
-    "customPath": "./vendor/bin/simple-phpunit"
-  }
+    "timeout": 100,
+    "source": {
+        "directories": [
+            "./src"
+        ],
+        "excludes": [
+            "Kernel.php",
+            "Repository",
+            "Entity",
+            "DataFixtures"
+        ]
+    },
+    "logs": {
+        "text": "./var/build/infection/infection-log.txt",
+        "summary": "./var/build/infection/summary.log",
+        "debug": "./var/build/infection/debug.log",
+        "perMutator": "./var/build/infection/per-mutator.md"
+    },
+    "mutators": {
+        "@default": true
+    },
+    "tmpDir": "./var/tmp",
+    "phpUnit": {
+        "customPath": "./vendor/bin/simple-phpunit"
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="wrike-php-library-rules">
+<ruleset name="my-rules">
     <description>
         Ruleset for PHPCS
     </description>
