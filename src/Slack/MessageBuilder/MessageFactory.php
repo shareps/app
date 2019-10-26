@@ -145,7 +145,7 @@ class MessageFactory
         return new MultiSelectStaticElement($placeholder, $actionId, $initialOption, $confirmDialog, $options);
     }
 
-    public function MultiSelectUserText(
+    public function elementMultiSelectUser(
         string $placeholder,
         string $actionId,
         string $initialUser,
