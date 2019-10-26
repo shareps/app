@@ -4,12 +4,14 @@ Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.sv
 [![Maintainability](https://api.codeclimate.com/v1/badges/43183c33cd086bdd6f6c/maintainability)](https://codeclimate.com/github/shareps/app/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/43183c33cd086bdd6f6c/test_coverage)](https://codeclimate.com/github/shareps/app/test_coverage)
 
-# Status
+## Status
+
 - General status: Early alpha version
 - Technical side analyzed and developed, general idea known, functional side under development
 - Ready to transform to working app
 
-# Tasks
+## Tasks
+
 - [ ] Docker
     - [ ] Replace supervisord?
     - [ ] Helmet/Kubernetes?
@@ -25,46 +27,46 @@ Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.sv
     - [ ] Logs
         - [x] File
         - [ ] Kibana/Greylog
-        - [ ] Database 
+        - [ ] Database
             - [ ] HTTP Requests
             - [ ] API Requests
             - [ ] Commands
             - [ ] DB Queries?
             - [ ] Stopwatch
-             
+
 - [ ] Access
-    - [ ] Authentication 
+    - [ ] Authentication
         - [x] Google Account
             - [ ] Invitation flow
             - [ ] Limit by Email Domain
         - [x] Slack Account
             - [ ] Invitation flow
             - [ ] Limit by Email Domain
-    - [ ] Authorization 
+    - [ ] Authorization
         - [ ] API
             - [x] Roles
-            - [x] Permissions 
-            - [x] Voters 
+            - [x] Permissions
+            - [x] Voters
         - [ ] HTTP
             - [ ] Roles
-            - [ ] Permissions 
-            - [ ] Voters 
+            - [ ] Permissions
+            - [ ] Voters
         - [ ] Slack
             - [ ] Roles
-            - [ ] Permissions 
-            - [ ] Voters 
+            - [ ] Permissions
+            - [ ] Voters
 
-- [ ] Create Account 
+- [ ] Create Account
     - [ ] Command
         - [x] Manager User
         - [ ] Invitation Email
         - [ ] Limit by Email Domain
-        
+
 - [ ] Accounting
     - [x] Double Entry system
     - [ ] Wallets
 
-- [ ] Resources    
+- [ ] Resources
     - [ ] Spaces
         - [x] Spaces availability
             - [ ] Edit
@@ -88,18 +90,18 @@ Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.sv
         - [ ] Rules
 
 - [ ] Parking Rules
-    - [x] Points    
-    - [x] Points per space   
-    - [ ] Reservation revoke    
-        - [ ] Points    
-        - [ ] Rules   
-    - [ ] Reservation assignment    
-        - [ ] Points    
-        - [ ] Rules    
-        
+    - [x] Points
+    - [x] Points per space
+    - [ ] Reservation revoke
+        - [ ] Points
+        - [ ] Rules
+    - [ ] Reservation assignment
+        - [ ] Points
+        - [ ] Rules
+
 - [ ] Tasks
     - [ ] Configuration
-    - [ ] Cron 
+    - [ ] Cron
 
 - [ ] Slack
     - [ ] Command
@@ -107,4 +109,3 @@ Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.sv
         - [ ] Take reservation
     - [ ] Component
     - [ ] Event
-        

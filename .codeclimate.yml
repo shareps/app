@@ -31,7 +31,7 @@ plugins:
     markdownlint:
         enabled: true
     phan:
-      enabled: true
+      enabled: false
       config:
         minimum-severity: 5
 checks:
