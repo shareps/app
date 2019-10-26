@@ -1,6 +1,8 @@
 # SHAREP -SHAred REsources Platform API
 
 Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.svg?branch=master)](https://travis-ci.org/shareps/app)
+[![Maintainability](https://api.codeclimate.com/v1/badges/43183c33cd086bdd6f6c/maintainability)](https://codeclimate.com/github/shareps/app/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/43183c33cd086bdd6f6c/test_coverage)](https://codeclimate.com/github/shareps/app/test_coverage)
 
 # Status
 - General status: Early alpha version
