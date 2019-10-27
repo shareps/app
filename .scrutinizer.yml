@@ -17,13 +17,12 @@ build:
             - composer install --no-interaction --ignore-platform-reqs
     nodes:
         analysis:
+            project_setup:
+                override:
+                    - 'true'
             tests:
                 override:
-                    -
-                        command: ./bin/phpunit --coverage-clover=clover.xml
-                        coverage:
-                            file: clover.xml
-                            format: php-clover
+                    - ./bin/phpunit --coverage-clover=clover.xml
 
 filter:
     paths:
