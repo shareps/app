@@ -33,7 +33,7 @@ class SharepHelpMessage
             ),
             $mf->blockSection(
                 $mf->elementPlainText('/sharep release')
-            ),
+            )
         );
     }
 }
