@@ -12,17 +12,11 @@ build:
         postgresql: true
         php:
             version: 7.3
-    dependencies:
-        override:
-            - composer install --no-interaction --ignore-platform-reqs
     nodes:
         analysis:
-            project_setup:
-                override:
-                    - 'true'
             tests:
                 override:
-                    - ./bin/phpunit --coverage-clover=clover.xml
+                    - vendor/bin/simple-phpunit
 
 filter:
     paths:
