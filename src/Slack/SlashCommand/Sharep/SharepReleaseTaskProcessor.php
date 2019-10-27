@@ -25,7 +25,7 @@ class SharepReleaseTaskProcessor implements TaskProcessorInterface
         $this->messageFactory = $messageFactory;
     }
 
-    public function support(CommandData $commandData): bool
+    public function supports(CommandData $commandData): bool
     {
         return (bool) preg_match("/^release\s?/i", $commandData->text);
     }

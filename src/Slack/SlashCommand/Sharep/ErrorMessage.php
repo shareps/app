@@ -29,7 +29,7 @@ class ErrorMessage
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('Error: Something goes completely wrong!'),
+                $mf->elementPlainText('Error: Something goes completely wrong!')
             )
         );
     }

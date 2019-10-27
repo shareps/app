@@ -87,8 +87,10 @@ class ReserveWeekTask extends AbstractTask
         $this->entitiesToSave[] = $journal;
 
         $reservedPlaces = 0;
+        $reservedDate = null;
         /** @var \DateTimeImmutable $date */
         foreach ($this->properties->getDates() as $date) {
+            $reservedDate = $date;
             $dateString = $date->format(ApplicationEnum::DATE_FORMAT);
 
             if (0 === $this->availablePlacesSummary) {
@@ -114,7 +116,7 @@ class ReserveWeekTask extends AbstractTask
         $journalMove = new JournalMove(
             $journal,
             $systemMember,
-            $date,
+            $reservedDate,
             0,
             $reservedPlaces * ApplicationEnum::PLACE_POINTS
         );

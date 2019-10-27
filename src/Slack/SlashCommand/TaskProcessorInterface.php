@@ -14,7 +14,7 @@ use App\Slack\MessageBuilder\Layout;
 
 interface TaskProcessorInterface
 {
-    public function support(CommandData $commandData): bool;
+    public function supports(CommandData $commandData): bool;
 
     public function process(CommandData $commandData): Layout;
 }
