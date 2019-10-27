@@ -1,23 +1,25 @@
 build:
     nodes:
-        my-tests:
-            environment:
-                mysql: false
-                redis: false
-                postgresql: true
-                php:
-                    version: 7.3
         analysis:
+            project_setup:
+                override:
+                    - 'true'
             tests:
                 override:
-                    -   command: ./bin/phpunit --coverage-clover=clover.xml
+                    -   
+                        command: ./bin/phpunit --coverage-clover=clover.xml
                         coverage:
                             file: clover.xml
                             format: php-clover
     environment:
-        timezone:             UTC
+        timezone: UTC
         variables:
             DATABASE_URL: pgsql://scrutinizer:scrutinizer@localhost:5435/scrutinizer
+        mysql: false
+        redis: false
+        postgresql: true
+        php:
+            version: 7.3
 
 filter:
     paths:
