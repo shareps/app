@@ -86,7 +86,6 @@ checks:
             isser_method_name: '^(?:is|has|should|may|supports)'
         code_rating: true
         duplication: true
-        concatenation: true
 
 coding_style:
     php:
@@ -95,6 +94,7 @@ coding_style:
                 size: 1
         spaces:
             around_operators:
+                concatenation: true
 
         build_failure_conditions:
             - 'elements.rating(<= C).new.exists'                             # No new classes/methods with a rating of C or worse allowed
