@@ -35,6 +35,7 @@ script:
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run --allow-risky=yes
   - ./bin/phpunit --coverage-clover ./build/logs/clover.xml
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
+  - sonar-scanner
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
@@ -52,3 +53,9 @@ deploy:
     stage: shareps-app-stage
   on:
     repo: shareps/app
+
+addons:
+  sonarcloud:
+    organization: shareps
+    token:
+      secure: LWyjeJH4bVtNEqOPGvbOVLyTxc89xMsw8oGg1lPkDQaZMRaBI+lQnoFF31b2EN7naaIDUwPqgsyz1YA8WcIv5KOGKx0111MFAM55hkOOJlGPzy3UEmPYjnjAVH2qGW0ihyGZFeLUV9MOhKFZqOmTheLpCBoVg7rNmOnMo2ipWw/qneGDNiqR8Wl3Lq+Q6jRNBk6KOmk0BSKyeaZprz8TX+s6hFr4I8s7SKm4rALlmIDdii2YzrbSQs4Uu4pFRuuVNTHoWM0VtAIM1WctFuPTBjCRYKpdCy9By1Zn4ujwoMzpRaDrphVmOet3NpsSB17QWM1246XT1TGvuh/aPo0OVs0chNY6Hu4JHOFcST9hUFcqXWcwxqjMQkinn9lEmUGKzsvSyocUEC/cfoaPBRGRbEsTAft7WoVieVeRq660Wg4lR2LLtgxDpF5nFeky9WY8mAXeC2L2OtFveU6Mu/4Vn4PbW1fLiOmI9fr/iu4dc5jTfH21y6qU3GVK1QoecB+g9G7QNHmcgAvS9CmEcC6a5Z+ugSVEIL6cSKO4KDKw6co4MGnvpMlqK7VVZG07cqzlCfLz9WZ9rlb3tQzElLoDSfCd9cauaZ6km7d2hf38xENzvsRd1vADItZoSs4iqwbdYpt1edzOVOE7VWyvHxt3OKOMCMABiQnzWNhWAtfyUus=
