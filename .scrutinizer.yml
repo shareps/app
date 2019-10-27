@@ -13,6 +13,7 @@ build:
         variables:
             DATABASE_URL: pgsql://scrutinizer:scrutinizer@localhost:5435/scrutinizer
             SYMFONY_ENV: test
+            APP_ENV: test
         mysql: false
         redis: false
         postgresql: true

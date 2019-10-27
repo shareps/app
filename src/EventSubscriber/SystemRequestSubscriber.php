@@ -106,36 +106,30 @@ class SystemRequestSubscriber implements EventSubscriberInterface
 
     public function onKernelResponse(ResponseEvent $event): void
     {
-        if (null === $this->requestLog) {
-            return;
-        }
-
         if (!$event->isMasterRequest()) {
             return;
         }
 
-        $this->requestLog->setFinishedAt(new \DateTimeImmutable());
-        $this->requestLog->setSuccessful(true);
+        if ($this->requestLog) {
+            $this->requestLog->setFinishedAt(new \DateTimeImmutable());
+            $this->requestLog->setSuccessful(true);
 
-        $this->entityManager->persist($this->requestLog);
-        $this->entityManager->persist($this->requestLogDetail);
-        $this->entityManager->flush();
+            $this->entityManager->persist($this->requestLog);
+            $this->entityManager->flush();
+        }
     }
 
     public function onKernelException(ExceptionEvent $event): void
     {
-        if (null === $this->requestLog) {
-            return;
-        }
-
         if (!$event->isMasterRequest()) {
             return;
         }
 
-        $this->requestLog->setSuccessful(false);
+        if (null === $this->requestLog) {
+            $this->requestLog->setSuccessful(false);
 
-        $this->entityManager->persist($this->requestLog);
-        $this->entityManager->persist($this->requestLogDetail);
-        $this->entityManager->flush();
+            $this->entityManager->persist($this->requestLog);
+            $this->entityManager->flush();
+        }
     }
 }
