@@ -3,8 +3,9 @@ build:
         timezone: UTC
         variables:
             DATABASE_URL: pgsql://scrutinizer:scrutinizer@localhost:5435/scrutinizer
-            SYMFONY_ENV: test
             APP_ENV: test
+            SYMFONY_ENV: test
+            SYMFONY_PHPUNIT_VERSION: 7.5
         mysql: false
         redis: false
         postgresql: true
