@@ -7,9 +7,9 @@ build:
             tests:
                 override:
                     -   
-                        command: ./bin/phpunit --coverage-clover=clover.xml
+                        command: ./bin/phpunit --coverage-clover=build/log/clover.xml
                         coverage:
-                            file: clover.xml
+                            file: build/log/clover.xml
                             format: php-clover
     environment:
         timezone: UTC
@@ -86,6 +86,7 @@ checks:
             isser_method_name: '^(?:is|has|should|may|supports)'
         code_rating: true
         duplication: true
+        concatenation: true
 
 coding_style:
     php:
@@ -101,7 +102,6 @@ coding_style:
             - 'project.metric_change("scrutinizer.test_coverage", < -0.01)' # Code Coverage decreased from previous inspection
             - 'patches.label("Unused Use Statements").new.exists'            # No new unused imports patches allowed
             - 'project.metric("scrutinizer.test_coverage", < 0.80)'          # Code Coverage drops below 60%
-            concatenation: true
 
 tools:
     external_code_coverage:
