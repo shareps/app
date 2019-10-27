@@ -15,7 +15,7 @@ build:
         analysis:
             tests:
                 override:
-                    - vendor/bin/simple-phpunit
+                    - SYMFONY_PHPUNIT_VERSION=7.5 bin/phpunit
 
 filter:
     paths:
