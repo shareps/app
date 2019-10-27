@@ -1,13 +1,4 @@
 build:
-    nodes:
-        analysis:
-            tests:
-                override:
-                    -   
-                        command: ./bin/phpunit --coverage-clover=build/clover.xml
-                        coverage:
-                            file: build/clover.xml
-                            format: php-clover
     environment:
         timezone: UTC
         variables:
@@ -19,6 +10,23 @@ build:
         postgresql: true
         php:
             version: 7.3
+    dependencies:
+        override:
+            - composer install --no-interaction --ignore-platform-reqs
+    nodes:
+        analysis:
+            tests:
+                override:
+                    -
+                        command: ./bin/phpunit --coverage-clover=build/clover.xml
+                        coverage:
+                            file: build/clover.xml
+                            format: php-clover
+                        variables:
+                            DATABASE_URL: pgsql://scrutinizer:scrutinizer@localhost:5435/scrutinizer
+                            SYMFONY_ENV: test
+                            APP_ENV: test
+
 
 filter:
     paths:

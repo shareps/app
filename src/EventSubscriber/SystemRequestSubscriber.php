@@ -125,7 +125,7 @@ class SystemRequestSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if (null === $this->requestLog) {
+        if ($this->requestLog) {
             $this->requestLog->setSuccessful(false);
 
             $this->entityManager->persist($this->requestLog);
