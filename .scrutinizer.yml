@@ -1,15 +1,12 @@
 build:
     nodes:
         analysis:
-            project_setup:
-                override:
-                    - 'true'
             tests:
                 override:
                     -   
-                        command: ./bin/phpunit --coverage-clover=build/log/clover.xml
+                        command: ./bin/phpunit --coverage-clover=build/clover.xml
                         coverage:
-                            file: build/log/clover.xml
+                            file: build/clover.xml
                             format: php-clover
     environment:
         timezone: UTC
