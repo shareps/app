@@ -29,10 +29,10 @@ class SharepHelpMessage
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('Please try again, proper commands are:'),
+                $mf->elementPlainText('Please try again, proper commands are:')
             ),
             $mf->blockSection(
-                $mf->elementPlainText('/sharep release'),
+                $mf->elementPlainText('/sharep release')
             ),
         );
     }
