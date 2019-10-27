@@ -23,9 +23,9 @@ build:
             tests:
                 override:
                     -
-                        command: ./vendor/bin/simple-phpunit --coverage-clover=build/clover.xml
+                        command: ./bin/phpunit --coverage-clover=clover.xml
                         coverage:
-                            file: build/clover.xml
+                            file: clover.xml
                             format: php-clover
 
 filter:
