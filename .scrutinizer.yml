@@ -15,6 +15,11 @@ build:
             - composer install --no-interaction --ignore-platform-reqs
     nodes:
         analysis:
+            environment:
+                variables:
+                    DATABASE_URL: pgsql://scrutinizer:scrutinizer@localhost:5435/scrutinizer
+                    SYMFONY_ENV: test
+                    APP_ENV: test
             tests:
                 override:
                     -
@@ -22,11 +27,6 @@ build:
                         coverage:
                             file: build/clover.xml
                             format: php-clover
-                        variables:
-                            DATABASE_URL: pgsql://scrutinizer:scrutinizer@localhost:5435/scrutinizer
-                            SYMFONY_ENV: test
-                            APP_ENV: test
-
 
 filter:
     paths:
