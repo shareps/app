@@ -33,7 +33,7 @@ script:
   - ./bin/console lint:yaml config --parse-tags
   - ./bin/console doctrine:schema:validate --no-interaction
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run --allow-risky=yes
-  - ./bin/phpunit --coverage-clover ./build/logs/clover.xml
+  - ./bin/phpunit --coverage-clover ./build/logs/clover.xml --log-junit ./build/logs/junit.xml
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
   - sonar-scanner
 

@@ -1,10 +1,21 @@
 # SHAREP -SHAred REsources Platform API
 
-Travis Build Status [![Travis Build Status](https://travis-ci.org/shareps/app.svg?branch=master)](https://travis-ci.org/shareps/app)
+Travis
+[![Travis Build Status](https://travis-ci.org/shareps/app.svg?branch=master)](https://travis-ci.org/shareps/app)
+
+CodeClimate
 [![Maintainability](https://api.codeclimate.com/v1/badges/43183c33cd086bdd6f6c/maintainability)](https://codeclimate.com/github/shareps/app/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/43183c33cd086bdd6f6c/test_coverage)](https://codeclimate.com/github/shareps/app/test_coverage)
+
+Scrutinizer
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/shareps/app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/shareps/app/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/shareps/app/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/shareps/app/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/shareps/app/badges/build.png?b=master)](https://scrutinizer-ci.com/g/shareps/app/build-status/master)
+
+SonarCloud
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=shareps_app&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=shareps_app)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=shareps_app&metric=sqale_index)](https://sonarcloud.io/dashboard?id=shareps_app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=shareps_app&metric=coverage)](https://sonarcloud.io/dashboard?id=shareps_app)
 
 ## Status
 
