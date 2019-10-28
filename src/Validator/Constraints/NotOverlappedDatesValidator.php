@@ -37,8 +37,8 @@ class NotOverlappedDatesValidator extends ConstraintValidator
      */
     public function validate($entity, Constraint $constraint): void
     {
-        assert($entity instanceof EntityInterface);
-        assert($constraint instanceof NotOverlappedDates);
+        \assert($entity instanceof EntityInterface);
+        \assert($constraint instanceof NotOverlappedDates);
 
         $this->assertInstances($entity, $constraint);
         $this->assertConstraintProperties($entity, $constraint);
@@ -86,8 +86,8 @@ class NotOverlappedDatesValidator extends ConstraintValidator
 
     private function assertInstances($entity, Constraint $constraint): void
     {
-        assert($entity instanceof EntityInterface);
-        assert($constraint instanceof NotOverlappedDates);
+        \assert($entity instanceof EntityInterface);
+        \assert($constraint instanceof NotOverlappedDates);
 
         if (!$constraint instanceof NotOverlappedDates) {
             throw new UnexpectedTypeException($constraint, NotOverlappedDates::class);
