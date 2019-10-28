@@ -123,8 +123,11 @@ class ReserveWeekTask extends AbstractTask
         $this->entitiesToSave[] = $journalMove;
     }
 
-    private function processOneDayForMemberReturnReservedPlaces(\DateTimeImmutable $date, Member $member, Journal $journal): int
-    {
+    private function processOneDayForMemberReturnReservedPlaces(
+        \DateTimeImmutable $date,
+        Member $member,
+        Journal $journal
+    ): int {
         $dateString = $date->format(ApplicationEnum::DATE_FORMAT);
 
         if (false === $this->properties->isMembershipForMemberAndDate($member, $date)) {

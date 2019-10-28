@@ -173,7 +173,7 @@ class User implements UserInterface, EntityInterface
      */
     public function getUsername(): ?string
     {
-        return $this->email;
+        return $this->getEmail();
     }
 
     /**

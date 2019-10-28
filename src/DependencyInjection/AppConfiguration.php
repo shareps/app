@@ -36,7 +36,7 @@ class AppConfiguration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('permissions');
 
-        $node = $treeBuilder->getRootNode()
+        return $treeBuilder->getRootNode()
             ->isRequired()
             ->children()
 
@@ -72,16 +72,14 @@ class AppConfiguration implements ConfigurationInterface
 
             ->end()
         ;
-
-        return $node;
     }
 
     private function addPermissionsForRoles(string $name): NodeDefinition
     {
         $treeBuilder = new TreeBuilder($name);
 
-        /** @noinspection NullPointerExceptionInspection */
-        $node = $treeBuilder->getRootNode()
+        /* @noinspection NullPointerExceptionInspection */
+        return $treeBuilder->getRootNode()
             ->isRequired()
             ->requiresAtLeastOneElement()
             ->useAttributeAsKey('name')
@@ -100,15 +98,13 @@ class AppConfiguration implements ConfigurationInterface
                 ->end()
             ->end()
         ;
-
-        return $node;
     }
 
     private function addPermissionsBoolean(string $name): NodeDefinition
     {
         $treeBuilder = new TreeBuilder($name);
 
-        $node = $treeBuilder->getRootNode()
+        return $treeBuilder->getRootNode()
             ->isRequired()
             ->requiresAtLeastOneElement()
             ->useAttributeAsKey('name')
@@ -117,7 +113,5 @@ class AppConfiguration implements ConfigurationInterface
                     ->defaultValue(false)
             ->end()
         ;
-
-        return $node;
     }
 }

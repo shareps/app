@@ -33,7 +33,7 @@ class SharepCommandProcessor implements CommandProcessorInterface
     {
         /** @var TaskProcessorInterface $taskProcessor */
         foreach ($this->getTaskProcessors() as $taskProcessor) {
-            if ($taskProcessor->support($commandData)) {
+            if ($taskProcessor->supports($commandData)) {
                 return $taskProcessor->process($commandData);
             }
         }

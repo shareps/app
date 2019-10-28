@@ -206,14 +206,12 @@ class PermissionVoter extends Voter
 
     protected function voteOnAttributeRole(string $attribute, GetRoleInterface $subject, Member $loggedInMember): bool
     {
-        $hasPermissionRole = $this->configurationService
+        return $this->configurationService
             ->hasPermissionRole(
                 new PermissionEnum($attribute),
                 $loggedInMember->getRole(),
                 $subject->getRole()
             );
-
-        return $hasPermissionRole;
     }
 
     protected function voteOnAttributeMemberRole(string $attribute, GetMemberInterface $subject, Member $loggedInMember): bool
