@@ -50,7 +50,7 @@ checks:
         no_short_variable_names:
             minimum: '1'
         no_short_method_names:
-            minimum: '3'
+            minimum: '2'
         no_long_variable_names:
             maximum: '36'
         more_specific_types_in_doc_comments: true
@@ -81,7 +81,7 @@ checks:
             exception_name: '^[A-Z][a-zA-Z0-9]*Exception$'
             isser_method_name: '^(?:is|has|should|may|supports)'
         code_rating: true
-        duplication: true
+        duplication: false
 
 coding_style:
     php:
