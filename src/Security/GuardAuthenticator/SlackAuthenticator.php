@@ -158,8 +158,8 @@ class SlackAuthenticator extends SocialAuthenticator
 
     private function getSlackClient(): SlackClient
     {
-        /** @var SlackClient $client */
         $client = $this->clientRegistry->getClient('slack');
+        assert($client instanceof SlackClient);
 
         return $client;
     }

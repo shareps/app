@@ -116,12 +116,11 @@ class ParkingReservationRepository
     }
 
     /**
-     * @return array|Member[]
+     * @return array|MemberNeed[]
      */
     public function getMembersNeedsForDate(\DateTimeImmutable $date): array
     {
-        /** @var MemberNeed[]|array $memberNeeds */
-        $memberNeeds = $this->entityManager
+        return $this->entityManager
             ->createQueryBuilder()
             ->select('mn, m')
             ->from(MemberNeed::class, 'mn')
@@ -131,8 +130,6 @@ class ParkingReservationRepository
             ->getQuery()
             ->getResult()
         ;
-
-        return $memberNeeds;
     }
 
     //------------------------------------------------------------------------------------------------------------------
