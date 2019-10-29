@@ -26,7 +26,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -34,18 +33,11 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class SlackAuthenticator extends SocialAuthenticator
 {
-    /**
-     * @var ClientRegistry
-     */
+    /** @var ClientRegistry */
     protected $clientRegistry;
-
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $entityManager;
-    /**
-     * @var Router
-     */
+    /** @var RouterInterface */
     protected $router;
 
     public function __construct(
@@ -59,8 +51,8 @@ class SlackAuthenticator extends SocialAuthenticator
     }
 
     /**
-     * @param Request                 $request       The request that resulted in an AuthenticationException
-     * @param AuthenticationException $authException The exception that started the authentication process
+     * @param Request                      $request       The request that resulted in an AuthenticationException
+     * @param AuthenticationException|null $authException The exception that started the authentication process
      */
     public function start(
         Request $request,

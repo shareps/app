@@ -36,9 +36,9 @@ class SlackController extends AbstractController
     }
 
     /**
-     * @Route("/component", name="_component")
+     * @Route("/interaction", name="_interaction")
      */
-    public function componentAction(
+    public function interactionAction(
         Request $request,
         CommandHelper $commandHelper
     ): JsonResponse {
