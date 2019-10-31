@@ -8,22 +8,22 @@ declare(strict_types=1);
  * (c) Zbigniew Ślązak
  */
 
-namespace App\Slack\InteractiveComponent;
+namespace App\Slack\InteractiveComponent\Data;
 
 use JMS\Serializer\Annotation as SA;
 
-class ComponentData
+class AppActionData
 {
     /** @SA\SerializedName("type") */
     public $type;
     /**
      * @SA\SerializedName("team")
-     * @SA\Type("\App\Slack\InteractiveComponent\TeamData")
+     * @SA\Type("\App\Slack\InteractiveComponent\Data\TeamData")
      */
     public $team;
     /**
      * @SA\SerializedName("user")
-     * @SA\Type("\App\Slack\InteractiveComponent\UserData")
+     * @SA\Type("\App\Slack\InteractiveComponent\Data\UserData")
      */
     public $user;
     /** @SA\SerializedName("api_app_id") */
@@ -32,21 +32,21 @@ class ComponentData
     public $token;
     /**
      * @SA\SerializedName("container")
-     * @SA\Type("\App\Slack\InteractiveComponent\ContainerData")
+     * @SA\Type("\App\Slack\InteractiveComponent\Data\ContainerData")
      */
     public $container;
     /** @SA\SerializedName("trigger_id") */
     public $triggerId;
     /**
      * @SA\SerializedName("channel")
-     * @SA\Type("\App\Slack\InteractiveComponent\ChannelData")
+     * @SA\Type("\App\Slack\InteractiveComponent\Data\ChannelData")
      */
     public $channel;
     /** @SA\SerializedName("response_url") */
     public $responseUrl;
     /**
      * @SA\SerializedName("actions")
-     * @SA\Type("ArrayCollection<\App\Slack\InteractiveComponent\ChannelData>")
+     * @SA\Type("ArrayCollection<\App\Slack\InteractiveComponent\Data\ChannelData>")
      */
     public $actions;
 }

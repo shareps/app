@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace App\Slack\SlashCommand;
 
 use App\Slack\MessageBuilder\Layout;
+use App\Slack\SlashCommand\Data\CommandData;
 
 interface TaskProcessorInterface
 {

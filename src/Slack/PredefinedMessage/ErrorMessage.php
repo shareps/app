@@ -8,7 +8,7 @@ declare(strict_types=1);
  * (c) Zbigniew Ślązak
  */
 
-namespace App\Slack\SlashCommand\Sharep;
+namespace App\Slack\PredefinedMessage;
 
 use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;

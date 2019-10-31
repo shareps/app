@@ -17,7 +17,7 @@ use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
 use App\Slack\MessageBuilder\Object\OptionObject;
 
-class MultiSelectStaticElement implements SectionBlockAccessoryInterface
+class MultiSelectStaticElement implements SectionBlockElementInterface, InputBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 
@@ -27,8 +27,8 @@ class MultiSelectStaticElement implements SectionBlockAccessoryInterface
     private $placeholder;
     /** @var string */
     private $actionId;
-    /** @var OptionObject */
-    private $initialOption;
+    /** @var array|OptionObject[] */
+    private $initialOptions;
     /** @var ConfirmationDialogObject */
     private $confirmDialog;
     /** @var array|OptionObject[] */
@@ -37,7 +37,7 @@ class MultiSelectStaticElement implements SectionBlockAccessoryInterface
     public function __construct(
         string $placeholder,
         string $actionId,
-        OptionObject $initialOption = null,
+        array $initialOptions = [],
         ConfirmationDialogObject $confirmDialog = null,
         OptionObject ...$options
     ) {
@@ -51,13 +51,13 @@ class MultiSelectStaticElement implements SectionBlockAccessoryInterface
             throw new \InvalidArgumentException('$options too long!');
         }
         if (0 === \count($options)) {
-            throw new \InvalidArgumentException('$url too short!');
+            throw new \InvalidArgumentException('$options too short!');
         }
 
         $this->type = MessageTypeEnum::ELEMENT_MULTI_SELECT_STATIC;
         $this->placeholder = new PlainTextElement($placeholder);
         $this->actionId = $actionId;
-        $this->initialOption = $initialOption;
+        $this->initialOptions = $initialOptions;
         $this->confirmDialog = $confirmDialog;
         $this->options = $options;
     }

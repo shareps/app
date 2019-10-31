@@ -15,8 +15,10 @@ namespace App\Slack\MessageBuilder\Element;
 use App\Slack\MessageBuilder\Enum\MessageTypeEnum;
 use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
+use App\Slack\MessageBuilder\Object\OptionGroupObject;
+use App\Slack\MessageBuilder\Object\OptionObject;
 
-class MultiSelectUserElement implements SectionBlockElementInterface, InputBlockElementInterface
+class MultiSelectStaticGroupElement implements SectionBlockElementInterface, InputBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 
@@ -26,24 +28,38 @@ class MultiSelectUserElement implements SectionBlockElementInterface, InputBlock
     private $placeholder;
     /** @var string */
     private $actionId;
-    /** @var array|string[] */
-    private $initialUsers;
+    /** @var array|OptionObject[] */
+    private $initialOptions;
     /** @var ConfirmationDialogObject */
     private $confirmDialog;
+    /** @var array|OptionGroupObject[] */
+    private $optionGroups;
 
-    public function __construct(string $placeholder, string $actionId, array $initialUsers = [], ConfirmationDialogObject $confirmDialog = null)
-    {
+    public function __construct(
+        string $placeholder,
+        string $actionId,
+        array $initialOptions = [],
+        ConfirmationDialogObject $confirmDialog = null,
+        OptionGroupObject ...$optionGroups
+    ) {
         if (\strlen($placeholder) > 150) {
             throw new \InvalidArgumentException('$text too long!');
         }
         if (\strlen($actionId) > 255) {
             throw new \InvalidArgumentException('$actionId too long!');
         }
+        if (\count($optionGroups) > 100) {
+            throw new \InvalidArgumentException('$optionGroups too long!');
+        }
+        if (0 === \count($optionGroups)) {
+            throw new \InvalidArgumentException('$optionGroups too short!');
+        }
 
-        $this->type = MessageTypeEnum::ELEMENT_MULTI_SELECT_USER;
+        $this->type = MessageTypeEnum::ELEMENT_MULTI_SELECT_STATIC;
         $this->placeholder = new PlainTextElement($placeholder);
         $this->actionId = $actionId;
-        $this->initialUsers = $initialUsers;
+        $this->initialOptions = $initialOptions;
         $this->confirmDialog = $confirmDialog;
+        $this->optionGroups = $optionGroups;
     }
 }

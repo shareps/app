@@ -11,24 +11,24 @@ declare(strict_types=1);
 namespace App\Slack\InteractiveComponent;
 
 use App\Slack\MessageBuilder\Layout;
+use App\Slack\PredefinedMessage\SharepHelpMessage;
 use JMS\Serializer\SerializerInterface;
 
 class ComponentHelper
 {
     /** @var SerializerInterface */
     private $serializer;
+    /** @var SharepHelpMessage */
+    private $sharepHelpMessage;
 
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(SerializerInterface $serializer, SharepHelpMessage $sharepHelpMessage)
     {
         $this->serializer = $serializer;
+        $this->sharepHelpMessage = $sharepHelpMessage;
     }
 
     public function handleWebhook(array $data): Layout
     {
-        $json = json_encode($data, JSON_THROW_ON_ERROR);
-        /** @var ComponentData $componentData */
-        $componentData = $this->serializer->deserialize($json, ComponentData::class, 'json');
-
-        throw new \InvalidArgumentException(sprintf('Unknown component "%s"', $componentData->type));
+        return $this->sharepHelpMessage->generate();
     }
 }

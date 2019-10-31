@@ -17,7 +17,7 @@ use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
 use App\Slack\MessageBuilder\Object\OptionObject;
 
-class SelectExternalElement implements SectionBlockAccessoryInterface
+class SelectExternalElement implements SectionBlockElementInterface, ActionsBlockElementInterface, InputBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 

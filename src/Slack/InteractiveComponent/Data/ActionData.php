@@ -8,7 +8,7 @@ declare(strict_types=1);
  * (c) Zbigniew Ślązak
  */
 
-namespace App\Slack\InteractiveComponent;
+namespace App\Slack\InteractiveComponent\Data;
 
 use JMS\Serializer\Annotation as SA;
 
@@ -22,6 +22,8 @@ class ActionData
     public $blockId;
     /** @SA\SerializedName("selected_date") */
     public $selectedDate;
+    /** @SA\SerializedName("value") */
+    public $value;
     /** @SA\SerializedName("action_ts") */
     public $actionTs;
 }

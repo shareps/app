@@ -16,7 +16,7 @@ use App\Slack\MessageBuilder\Enum\MessageTypeEnum;
 use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
 
-class SelectUserElement implements SectionBlockAccessoryInterface
+class SelectUserElement implements SectionBlockElementInterface, ActionsBlockElementInterface, InputBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 
@@ -31,7 +31,7 @@ class SelectUserElement implements SectionBlockAccessoryInterface
     /** @var ConfirmationDialogObject */
     private $confirmDialog;
 
-    public function __construct(string $placeholder, string $actionId, string $initialUser, ConfirmationDialogObject $confirmDialog = null)
+    public function __construct(string $placeholder, string $actionId, string $initialUser = '', ConfirmationDialogObject $confirmDialog = null)
     {
         if (\strlen($placeholder) > 150) {
             throw new \InvalidArgumentException('$text too long!');

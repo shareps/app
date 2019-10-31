@@ -17,7 +17,7 @@ use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
 use App\Slack\MessageBuilder\Object\OptionObject;
 
-class MultiSelectExternalElement implements SectionBlockAccessoryInterface
+class MultiSelectExternalElement implements SectionBlockElementInterface, InputBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 
@@ -29,8 +29,8 @@ class MultiSelectExternalElement implements SectionBlockAccessoryInterface
     private $actionId;
     /** @var int */
     private $minQueryLength;
-    /** @var OptionObject */
-    private $initialOption;
+    /** @var array|OptionObject[] */
+    private $initialOptions;
     /** @var ConfirmationDialogObject */
     private $confirmDialog;
 
@@ -38,7 +38,7 @@ class MultiSelectExternalElement implements SectionBlockAccessoryInterface
         string $placeholder,
         string $actionId,
         int $minQueryLength,
-        OptionObject $initialOption = null,
+        array $initialOptions = [],
         ConfirmationDialogObject $confirmDialog = null
     ) {
         if (\strlen($placeholder) > 150) {
@@ -55,7 +55,7 @@ class MultiSelectExternalElement implements SectionBlockAccessoryInterface
         $this->placeholder = new PlainTextElement($placeholder);
         $this->actionId = $actionId;
         $this->minQueryLength = $minQueryLength;
-        $this->initialOption = $initialOption;
+        $this->initialOptions = $initialOptions;
         $this->confirmDialog = $confirmDialog;
     }
 }

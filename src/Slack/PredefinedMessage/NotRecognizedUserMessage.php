@@ -8,12 +8,12 @@ declare(strict_types=1);
  * (c) Zbigniew Ślązak
  */
 
-namespace App\Slack\SlashCommand\Sharep;
+namespace App\Slack\PredefinedMessage;
 
 use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;
 
-class SharepHelpMessage
+class NotRecognizedUserMessage
 {
     /** @var MessageFactory */
     private $messageFactory;
@@ -29,10 +29,7 @@ class SharepHelpMessage
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('Please try again, proper commands are:')
-            ),
-            $mf->blockSection(
-                $mf->elementPlainText('/sharep release')
+                $mf->elementPlainText('I do not know you!'),
             )
         );
     }

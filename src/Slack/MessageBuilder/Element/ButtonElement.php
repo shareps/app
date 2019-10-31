@@ -17,7 +17,7 @@ use App\Slack\MessageBuilder\Enum\MessageTypeEnum;
 use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
 
-class ButtonElement implements SectionBlockAccessoryInterface
+class ButtonElement implements SectionBlockElementInterface, ActionsBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 

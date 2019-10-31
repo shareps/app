@@ -11,8 +11,9 @@ declare(strict_types=1);
 namespace App\Slack\SlashCommand\Sharep;
 
 use App\Slack\MessageBuilder\Layout;
-use App\Slack\SlashCommand\CommandData;
 use App\Slack\SlashCommand\CommandProcessorInterface;
+use App\Slack\SlashCommand\Data\CommandData;
+use App\Slack\PredefinedMessage\SharepHelpMessage;
 use App\Slack\SlashCommand\TaskProcessorInterface;
 
 class SharepCommandProcessor implements CommandProcessorInterface

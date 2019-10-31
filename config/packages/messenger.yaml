@@ -38,4 +38,4 @@ framework:
 
         routing:
             # Route your messages to the transports
-            'App\Slack\SlashCommand\CommandData': [async_priority_high, async_priority_low]
+            'App\Slack\SlashCommand\Data\CommandData': [async_priority_high, async_priority_low]

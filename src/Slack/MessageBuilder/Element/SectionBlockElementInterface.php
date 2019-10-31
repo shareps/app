@@ -12,6 +12,6 @@ namespace App\Slack\MessageBuilder\Element;
 
 use App\Slack\MessageBuilder\MessageInterface;
 
-interface SectionBlockAccessoryInterface extends MessageInterface
+interface SectionBlockElementInterface extends MessageInterface
 {
 }

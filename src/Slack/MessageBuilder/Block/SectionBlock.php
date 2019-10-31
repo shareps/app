@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace App\Slack\MessageBuilder\Block;
 
-use App\Slack\MessageBuilder\Element\SectionBlockAccessoryInterface;
+use App\Slack\MessageBuilder\Element\SectionBlockElementInterface;
 use App\Slack\MessageBuilder\Element\TextElementInterface;
 use App\Slack\MessageBuilder\Enum\MessageTypeEnum;
 use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
@@ -25,12 +25,12 @@ class SectionBlock implements BlockInterface
     private $type;
     /** @var TextElementInterface|null */
     private $text;
-    /** @var SectionBlockAccessoryInterface|null */
+    /** @var SectionBlockElementInterface|null */
     private $accessory;
     /** @var array|TextElementInterface[] */
     private $fields;
 
-    public function __construct(TextElementInterface $text, SectionBlockAccessoryInterface $accessory = null, TextElementInterface ...$fields)
+    public function __construct(TextElementInterface $text, SectionBlockElementInterface $accessory = null, TextElementInterface ...$fields)
     {
         $this->type = MessageTypeEnum::BLOCK_SECTION;
         $this->text = $text;

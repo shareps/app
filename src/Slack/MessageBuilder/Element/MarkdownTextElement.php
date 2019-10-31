@@ -15,7 +15,7 @@ namespace App\Slack\MessageBuilder\Element;
 use App\Slack\MessageBuilder\Enum\TextTypeEnum;
 use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 
-class MarkdownTextElement implements TextElementInterface, SectionBlockAccessoryInterface
+class MarkdownTextElement implements TextElementInterface, SectionBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 

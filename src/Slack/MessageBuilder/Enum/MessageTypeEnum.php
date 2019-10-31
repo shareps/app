@@ -51,6 +51,7 @@ class MessageTypeEnum extends Enum
     public const ELEMENT_OVERFLOW_MENU = 'overflow';
     public const ELEMENT_DATE_PICKER = 'datepicker';
     public const ELEMENT_INPUT_PLAIN_TEXT = 'plain_text_input';
+    public const ELEMENT_RADIO_BUTTONS = 'radio_buttons';
 
     public const ELEMENT_TEXT_MARKDOWN = 'mrkdwn';
     public const ELEMENT_TEXT_PLAIN = 'plain_text';

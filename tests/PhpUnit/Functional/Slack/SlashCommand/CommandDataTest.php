@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace AppTests\PhpUnit\Functional\Slack\SlashCommand;
 
-use App\Slack\SlashCommand\CommandData;
+use App\Slack\SlashCommand\Data\CommandData;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

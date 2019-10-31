@@ -15,7 +15,7 @@ use App\Slack\MessageBuilder\MessageFactory;
 use App\Slack\SlashCommand\Data\CommandData;
 use App\Slack\SlashCommand\TaskProcessorInterface;
 
-class SharepReleaseTaskProcessor implements TaskProcessorInterface
+class SharepTakeTaskProcessor implements TaskProcessorInterface
 {
     /** @var MessageFactory */
     private $messageFactory;
@@ -27,7 +27,7 @@ class SharepReleaseTaskProcessor implements TaskProcessorInterface
 
     public function supports(CommandData $commandData): bool
     {
-        return (bool) preg_match("/^release\s?/i", $commandData->text);
+        return (bool) preg_match("/^take\s?/i", $commandData->text);
     }
 
     public function process(CommandData $commandData): Layout
@@ -36,11 +36,11 @@ class SharepReleaseTaskProcessor implements TaskProcessorInterface
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('Please select dates to release'),
+                $mf->elementPlainText('Please select dates to take'),
                 $mf->elementMultiSelectStaticGroup(
                     'Select dates',
-                    'sharep-release-multiselect-dates',
-                    [],
+                    'sharep-take-multiselect-dates',
+                    null,
                     null,
                     $mf->objectOptionGroup(
                         'Week 41',
@@ -49,7 +49,7 @@ class SharepReleaseTaskProcessor implements TaskProcessorInterface
                         $mf->objectOption('We 2019-11-13', '2019-11-13'),
                         $mf->objectOption('Th 2019-11-14', '2019-11-14'),
                         $mf->objectOption('Fr 2019-11-15', '2019-11-15'),
-                    ),
+                        ),
                     $mf->objectOptionGroup(
                         'Week 42',
                         $mf->objectOption('Mo 2019-11-18', '2019-11-18'),
@@ -57,7 +57,26 @@ class SharepReleaseTaskProcessor implements TaskProcessorInterface
                         $mf->objectOption('We 2019-11-20', '2019-11-20'),
                         $mf->objectOption('Th 2019-11-21', '2019-11-21'),
                         $mf->objectOption('Fr 2019-11-22', '2019-11-22'),
-                    ),
+                        )
+                )
+            ),
+            $mf->blockActions(
+                $mf->elementPlainText(
+                    'Take place for released date'
+                ),
+                $mf->elementButton(
+                    'Mo 2019-11-11',
+                    'sharep-take-button-date',
+                    null,
+                    null,
+                    '2019-11-11'
+                ),
+                $mf->elementButton(
+                    'Tu 2019-11-12',
+                    'sharep-take-button-date',
+                    null,
+                    null,
+                    '2019-11-12'
                 )
             )
         );

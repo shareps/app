@@ -13,8 +13,9 @@ namespace App\Slack\SlashCommand;
 use App\Entity\Parking\Member;
 use App\Repository\Entity\Parking\MemberRepository;
 use App\Slack\MessageBuilder\Layout;
-use App\Slack\SlashCommand\Sharep\ErrorMessage;
-use App\Slack\SlashCommand\Sharep\NotRecognizedUserMessage;
+use App\Slack\SlashCommand\Data\CommandData;
+use App\Slack\PredefinedMessage\ErrorMessage;
+use App\Slack\PredefinedMessage\NotRecognizedUserMessage;
 use App\Slack\SlashCommand\Sharep\SharepCommandProcessor;
 use JMS\Serializer\SerializerInterface;
 use Psr\Log\LoggerInterface;
@@ -56,9 +57,8 @@ class CommandHelper
             $message = null;
             $commandData = $this->calculateCommandData($data);
 
-            $member = $this->memberRepository->findOneBySlackUserId($commandData->userId);
-            if (!$member instanceof Member) {
-                $message = $this->notRecognizedUserMessage->generate();
+            if (!$this->memberRepository->findOneBySlackUserId($commandData->userId) instanceof Member) {
+                return $this->notRecognizedUserMessage->generate();
             }
 
             if (SharepCommandProcessor::COMMAND === $commandData->command) {

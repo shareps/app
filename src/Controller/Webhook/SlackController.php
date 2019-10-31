@@ -36,7 +36,7 @@ class SlackController extends AbstractController
     }
 
     /**
-     * @Route("/interaction", name="_interaction")
+     * @Route("/interaction", name="_interaction", methods={"post"})
      */
     public function interactionAction(
         Request $request,

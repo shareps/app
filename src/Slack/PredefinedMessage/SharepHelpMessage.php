@@ -8,12 +8,13 @@ declare(strict_types=1);
  * (c) Zbigniew Ślązak
  */
 
-namespace App\Slack\SlashCommand\Sharep;
+namespace App\Slack\PredefinedMessage;
 
+use App\Slack\MessageBuilder\Enum\ButtonStyleEnum;
 use App\Slack\MessageBuilder\Layout;
 use App\Slack\MessageBuilder\MessageFactory;
 
-class NotRecognizedUserMessage
+class SharepHelpMessage
 {
     /** @var MessageFactory */
     private $messageFactory;
@@ -29,7 +30,11 @@ class NotRecognizedUserMessage
 
         return $mf->layout(
             $mf->blockSection(
-                $mf->elementPlainText('I do not know you!'),
+                $mf->elementPlainText('Please try again, proper commands are:')
+            ),
+            $mf->blockActions(
+                $mf->elementButton('Info', 'sharep-info', ButtonStyleEnum::PRIMARY()),
+                $mf->elementButton('Release', 'action-release', ButtonStyleEnum::DANGER()),
             )
         );
     }

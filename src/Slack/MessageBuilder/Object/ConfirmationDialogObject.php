@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace App\Slack\MessageBuilder\Object;
 
-use App\Slack\MessageBuilder\Element\MarkdownTextElement;
 use App\Slack\MessageBuilder\Element\PlainTextElement;
+use App\Slack\MessageBuilder\Element\TextElementInterface;
 use App\Slack\MessageBuilder\MessageInterface;
 use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 
@@ -23,14 +23,14 @@ class ConfirmationDialogObject implements MessageInterface
 
     /** @var PlainTextElement */
     private $title;
-    /** @var MarkdownTextElement */
+    /** @var TextElementInterface */
     private $text;
     /** @var PlainTextElement */
     private $confirm;
     /** @var PlainTextElement */
     private $deny;
 
-    public function __construct(string $title, MarkdownTextElement $text, string $confirm, string $deny)
+    public function __construct(string $title, TextElementInterface $text, string $confirm, string $deny)
     {
         if (\strlen($title) > 100) {
             throw new \InvalidArgumentException('$title too long!');

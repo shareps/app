@@ -26,17 +26,21 @@ use App\Slack\MessageBuilder\Element\InputBlockElementInterface;
 use App\Slack\MessageBuilder\Element\MarkdownTextElement;
 use App\Slack\MessageBuilder\Element\MultiSelectExternalElement;
 use App\Slack\MessageBuilder\Element\MultiSelectStaticElement;
+use App\Slack\MessageBuilder\Element\MultiSelectStaticGroupElement;
 use App\Slack\MessageBuilder\Element\MultiSelectUserElement;
 use App\Slack\MessageBuilder\Element\OverflowMenuElement;
 use App\Slack\MessageBuilder\Element\PlainTextElement;
 use App\Slack\MessageBuilder\Element\PlainTextInputElement;
-use App\Slack\MessageBuilder\Element\SectionBlockAccessoryInterface;
+use App\Slack\MessageBuilder\Element\RadioButtonGroupElement;
+use App\Slack\MessageBuilder\Element\SectionBlockElementInterface;
 use App\Slack\MessageBuilder\Element\SelectExternalElement;
 use App\Slack\MessageBuilder\Element\SelectStaticElement;
+use App\Slack\MessageBuilder\Element\SelectStaticGroupElement;
 use App\Slack\MessageBuilder\Element\SelectUserElement;
 use App\Slack\MessageBuilder\Element\TextElementInterface;
 use App\Slack\MessageBuilder\Enum\ButtonStyleEnum;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
+use App\Slack\MessageBuilder\Object\OptionGroupObject;
 use App\Slack\MessageBuilder\Object\OptionObject;
 
 class MessageFactory
@@ -48,15 +52,13 @@ class MessageFactory
 
     //------------------------------------------------------------------------------------------------------------------
 
-    public function blockActions(
-        ActionsBlockElementInterface ...$elements
-    ): ActionsBlock {
+    public function blockActions(ActionsBlockElementInterface ...$elements): ActionsBlock
+    {
         return new ActionsBlock(...$elements);
     }
 
-    public function blockContext(
-        ContextBlockElementInterface ...$elements
-    ): ContextBlock {
+    public function blockContext(ContextBlockElementInterface ...$elements): ContextBlock
+    {
         return new ContextBlock(...$elements);
     }
 
@@ -84,7 +86,7 @@ class MessageFactory
 
     public function blockSection(
         TextElementInterface $text,
-        SectionBlockAccessoryInterface $accessory = null,
+        SectionBlockElementInterface $accessory = null,
         TextElementInterface ...$fields
     ): SectionBlock {
         return new SectionBlock($text, $accessory, ...$fields);
@@ -129,29 +131,39 @@ class MessageFactory
         string $placeholder,
         string $actionId,
         int $minQueryLength,
-        OptionObject $initialOption = null,
+        array $initialOptions = [],
         ConfirmationDialogObject $confirmDialog = null
     ): MultiSelectExternalElement {
-        return new MultiSelectExternalElement($placeholder, $actionId, $minQueryLength, $initialOption, $confirmDialog);
+        return new MultiSelectExternalElement($placeholder, $actionId, $minQueryLength, $initialOptions, $confirmDialog);
     }
 
     public function elementMultiSelectStatic(
         string $placeholder,
         string $actionId,
-        OptionObject $initialOption = null,
+        array $initialOptions = [],
         ConfirmationDialogObject $confirmDialog = null,
         OptionObject ...$options
     ): MultiSelectStaticElement {
-        return new MultiSelectStaticElement($placeholder, $actionId, $initialOption, $confirmDialog, $options);
+        return new MultiSelectStaticElement($placeholder, $actionId, $initialOptions, $confirmDialog, ...$options);
+    }
+
+    public function elementMultiSelectStaticGroup(
+        string $placeholder,
+        string $actionId,
+        array $initialOptions = [],
+        ConfirmationDialogObject $confirmDialog = null,
+        OptionGroupObject ...$optionGroups
+    ): MultiSelectStaticGroupElement {
+        return new MultiSelectStaticGroupElement($placeholder, $actionId, $initialOptions, $confirmDialog, ...$optionGroups);
     }
 
     public function elementMultiSelectUser(
         string $placeholder,
         string $actionId,
-        string $initialUser,
+        array $initialUsers = [],
         ConfirmationDialogObject $confirmDialog = null
     ): MultiSelectUserElement {
-        return new MultiSelectUserElement($placeholder, $actionId, $initialUser, $confirmDialog);
+        return new MultiSelectUserElement($placeholder, $actionId, $initialUsers, $confirmDialog);
     }
 
     public function elementOverflowMenu(
@@ -180,6 +192,15 @@ class MessageFactory
         return new PlainTextInputElement($actionId, $placeholder, $initialValue, $multiline, $minLength, $maxLength);
     }
 
+    public function elementRadioButtonGroup(
+        string $actionId,
+        ConfirmationDialogObject $confirmationDialog = null,
+        OptionObject $initialOption = null,
+        OptionObject ...$options
+    ): RadioButtonGroupElement {
+        return new RadioButtonGroupElement($actionId, $confirmationDialog, $initialOption, ...$options);
+    }
+
     public function elementSelectExternal(
         string $placeholder,
         string $actionId,
@@ -197,7 +218,17 @@ class MessageFactory
         ConfirmationDialogObject $confirmDialog = null,
         OptionObject ...$options
     ): SelectStaticElement {
-        return new SelectStaticElement($placeholder, $actionId, $initialOption, $confirmDialog, $options);
+        return new SelectStaticElement($placeholder, $actionId, $initialOption, $confirmDialog, ...$options);
+    }
+
+    public function elementSelectStaticGroup(
+        string $placeholder,
+        string $actionId,
+        OptionObject $initialOption = null,
+        ConfirmationDialogObject $confirmDialog = null,
+        OptionGroupObject ...$optionGroups
+    ): SelectStaticGroupElement {
+        return new SelectStaticGroupElement($placeholder, $actionId, $initialOption, $confirmDialog, ...$optionGroups);
     }
 
     public function elementSelectUserText(
@@ -210,4 +241,28 @@ class MessageFactory
     }
 
     //------------------------------------------------------------------------------------------------------------------
+
+    public function objectConfirmationDialog(
+        string $title,
+        TextElementInterface $text,
+        string $confirm,
+        string $deny
+    ): ConfirmationDialogObject {
+        return new ConfirmationDialogObject($title, $text, $confirm, $deny);
+    }
+
+    public function objectOptionGroup(
+        string $label,
+        OptionObject ...$options
+    ): OptionGroupObject {
+        return new OptionGroupObject($label, ...$options);
+    }
+
+    public function objectOption(
+        string $text,
+        string $value,
+        string $url = ''
+    ): OptionObject {
+        return new OptionObject($text, $value, $url);
+    }
 }

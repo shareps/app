@@ -17,7 +17,7 @@ use App\Slack\MessageBuilder\MessageJsonSerializeTrait;
 use App\Slack\MessageBuilder\Object\ConfirmationDialogObject;
 use App\Slack\MessageBuilder\Object\OptionObject;
 
-class OverflowMenuElement implements SectionBlockAccessoryInterface
+class OverflowMenuElement implements SectionBlockElementInterface, ActionsBlockElementInterface
 {
     use MessageJsonSerializeTrait;
 

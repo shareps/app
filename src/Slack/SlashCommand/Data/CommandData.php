@@ -8,7 +8,7 @@ declare(strict_types=1);
  * (c) Zbigniew Ślązak
  */
 
-namespace App\Slack\SlashCommand;
+namespace App\Slack\SlashCommand\Data;
 
 use JMS\Serializer\Annotation as SA;
 
