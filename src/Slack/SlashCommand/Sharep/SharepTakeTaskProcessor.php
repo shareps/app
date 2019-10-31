@@ -49,7 +49,7 @@ class SharepTakeTaskProcessor implements TaskProcessorInterface
                         $mf->objectOption('We 2019-11-13', '2019-11-13'),
                         $mf->objectOption('Th 2019-11-14', '2019-11-14'),
                         $mf->objectOption('Fr 2019-11-15', '2019-11-15'),
-                        ),
+                    ),
                     $mf->objectOptionGroup(
                         'Week 42',
                         $mf->objectOption('Mo 2019-11-18', '2019-11-18'),
@@ -57,7 +57,7 @@ class SharepTakeTaskProcessor implements TaskProcessorInterface
                         $mf->objectOption('We 2019-11-20', '2019-11-20'),
                         $mf->objectOption('Th 2019-11-21', '2019-11-21'),
                         $mf->objectOption('Fr 2019-11-22', '2019-11-22'),
-                        )
+                    )
                 )
             ),
             $mf->blockActions(
